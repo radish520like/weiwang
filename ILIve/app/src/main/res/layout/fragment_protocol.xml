@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/root_background"
+    android:paddingStart="19dp"
+    android:paddingEnd="19dp"
+    tools:context=".ui.login.LoginFragment">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="@string/license_server_protocol"
+        android:textColor="@color/black_100"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_check_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/textview2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.hhsj.ilive.widget.CustomCheckBox
+            android:id="@+id/checkbox_read"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:button="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_3" />
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/text_protocol_tips"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_read"
+            app:layout_constraintStart_toEndOf="@id/checkbox_read"
+            app:layout_constraintTop_toTopOf="@id/checkbox_read" />
+
+        <TextView
+            android:id="@+id/tv_protocol_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/login_register_text_color"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkbox_read"
+            app:layout_constraintStart_toEndOf="@id/textview1"
+            app:layout_constraintTop_toTopOf="@id/checkbox_read" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="@string/register_read_text_2"
+        android:textColor="@color/text_protocol_tips"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/ll_check_read"
+        app:layout_constraintStart_toStartOf="@id/ll_check_read" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14sp"
+        android:layout_marginBottom="29dp"
+        android:background="@drawable/shape_round_rect_white"
+        android:paddingStart="18dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="13dp"
+        android:scrollbars="vertical"
+        android:text="@string/license_server_content"
+        android:textColor="@color/black_100"
+        app:layout_constraintBottom_toTopOf="@id/ll_check_read"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

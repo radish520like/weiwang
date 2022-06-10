@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">微网</string>
+    <string name="app_title">欢迎登录微网</string>
+
+    <!--  Login & Register  -->
+    <string name="register_explain">未注册的手机号验证后自动创建微网账号</string>
+    <string name="input_telephone">请输入手机号</string>
+    <string name="input_verification_code">请输入验证码</string>
+    <string name="input_password">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="log_out">退出登录</string>
+    <string name="switch_account">切换账号</string>
+    <!--    <string name="register">同意并注册</string>-->
+    <string name="account_register">账号注册</string>
+    <string name="return_to_login">返回登录</string>
+    <string name="agree_register">同意并注册</string>
+    <string name="forget_password">找回密码</string>
+    <string name="urgent_freeze">紧急冻结</string>
+    <string name="more_options">更多选项</string>
+    <string name="obtain_verify_code">获取短信验证码</string>
+    <string name="verify_code_tips">验证码已发送至：%s</string>
+    <string name="verify_code_count_down">%s秒后重新获取验证码</string>
+    <string name="verify_code_retrieve">重新获取验证码</string>
+    <string name="logout_title">微网安全退出</string>
+    <string name="logout_msg">退出后不会删除任何数据，您可以再次登录使用。</string>
+
+    <string name="register_read_text">我已阅读并同意《微网用户服务协议》、《隐私政策》、《中国移动认证服务条款》，并授权微网使用本页面收集的账号信息进行统一管理。</string>
+
+    <string name="register_read_text_2">本页面收集的信息仅用于注册账号</string>
+    <string name="license_server_protocol">软件许可及服务协议</string>
+    <string name="license_server_content">欢迎你使用ILIVE软件及服务！\n\n
+为使用ILIVE软件（以下简称“本软件”）及服务，你应当阅读并遵守《ILIVE软件许可及服务协议》（以下简称“本协议”），以及《腾讯服务协议》 。请你务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制、免责条款可能以加粗等形式提示你注意。\n\n
+除非你已阅读并接受本协议所有条款，否则你无权下载、安装或使用本软件及相关服务。你的下载、安装、使用、获取微信帐号、登录等行为即视为你已阅读并同意上述协议的约束。\n\n
+如果你未满18周岁，请在法定监护人的陪同下阅读本协议及上述其他协议，并特别注意未成年人使用条款。特别地，如果你是未满14周岁的儿童，则在完成帐号注册前，还应请你的监护人仔细阅读腾讯公司专门制定的《儿童隐私保护声明》。只有在取得监护人对《儿童隐私保护声明》的同意后，未满14周岁的儿童方可使用微信服务。\n\n
+一、协议的范围\n\n
+1.1 协议适用主体范围\n\n
+本协议是你与腾讯之间关于你下载、安装、使用、复制本
+</string>
+
+    <!--  main  -->
+    <string name="tab_tag_message">消息</string>
+    <string name="tab_tag_address_book">通讯录</string>
+    <string name="tab_tag_ilive">ILive</string>
+    <string name="tab_tag_service">服务</string>
+    <string name="tab_tag_my">我的</string>
+    
+    <!--  user info  -->
+    <string name="user_info_item_nick_name">昵称</string>
+    <string name="user_info_item_account">账号</string>
+    <string name="user_info_logout_dialog_cancel">取消</string>
+    <string name="user_info_logout_dialog_exit">安全退出</string>
+    <string name="user_info_logout_dialog_title">感谢您使用微网账户，欢迎下次登录！</string>
+
+    <!--  toast text  -->
+    <string name="toast_telephone_error">请输入合法的手机号</string>
+
+</resources>

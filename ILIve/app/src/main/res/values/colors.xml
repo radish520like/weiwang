@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_100">#A2A2A2</color>
+    <color name="blue_100">#2A82E4</color>
+
+    <color name="register_login_edit_hint">#929297</color>
+    <color name="app_title_color">#020207</color>
+    <color name="root_background">#F2F2F2</color>
+    <color name="round_rect_button_no_enable">#5F00CCBB</color>
+    <color name="round_rect_button_enable">#00CCBB</color>
+
+    <color name="red">#D43030</color>
+    
+    <color name="login_register_text_color">#2A82E4</color>
+    <color name="text_protocol_tips">#A2A2A2</color>
+
+    <color name="text_no_enabled_color">#222227</color>
+    <color name="text_enabled_color">#FFFFFF</color>
+
+
+    <color name="white_100">#FFFFFF</color>
+    <color name="white_80">#F2F2F2</color>
+    <color name="white_60">#E2E2E2</color>
+    <color name="white_40">#D2D2D2</color>
+    <color name="white_20">#C2C2C2</color>
+    <color name="white_0">#B2B2B7</color>
+
+    <color name="black_0">#727277</color>
+    <color name="black_20">#626267</color>
+    <color name="black_40">#525257</color>
+    <color name="black_60">#424247</color>
+    <color name="black_80">#020207</color>
+    <color name="black_100">#222227</color>
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_80"
+    tools:context=".ui.login.LoginFragment">
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_title"
+        android:textColor="@color/app_title_color"
+        android:textSize="27sp"
+        app:textFont="Normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.hhsj.ilive.widget.CustomFontEditText
+        android:id="@+id/et_telephone"
+        style="@style/Login_Regis_EditText_Style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="phone"
+        android:ems="10"
+        android:hint="@string/input_telephone"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_explain"
+        app:layout_constraintStart_toStartOf="@id/tv_explain"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:textFont="Light"
+        android:text="@string/register_explain"
+        android:textColor="@color/register_login_edit_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_telephone" />
+
+    <ImageView
+        android:id="@+id/iv_help"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="15dp"
+        android:src="@mipmap/icon_help_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/et_telephone"
+        app:layout_constraintTop_toTopOf="@id/et_telephone"
+        app:layout_constraintBottom_toBottomOf="@id/et_telephone"
+        android:visibility="gone"
+        android:padding="5dp"
+        android:src="@mipmap/icon_delete"/>
+
+    <com.hhsj.ilive.widget.CustomCheckBox
+        android:id="@+id/checkbox_read"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        app:layout_constraintStart_toStartOf="@id/btn_login"
+        app:layout_constraintTop_toTopOf="@id/tv_read" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_read"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_read_text"
+        android:textColor="@color/register_login_edit_hint"
+        android:textSize="11sp"
+        app:textFont="Light"
+        android:layout_marginStart="6dp"
+        app:layout_constraintEnd_toEndOf="@id/btn_login"
+        app:layout_constraintStart_toEndOf="@id/checkbox_read"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/btn_login"
+        style="@style/Login_Regis_Button_Style"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
+        android:enabled="false"
+        app:textFont="Regular"
+        android:text="@string/obtain_verify_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/line_view"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Login_Regis_Button_Style">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/white_100</item>
+        <item name="android:background">@drawable/selector_rect_button_background</item>
+    </style>
+
+    <style name="Login_Regis_EditText_Style">
+        <item name="android:gravity">center</item>
+        <item name="android:theme">@style/MyEditText</item>
+        <item name="android:textColorHint">@color/register_login_edit_hint</item>
+    </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_down</item>
+    </style>
+
+    <style name="LeftActionIcon">
+        <item name="android:paddingTop">22dp</item>
+        <item name="android:paddingStart">1dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+
+    <style name="RightActionIcon">
+        <item name="android:paddingTop">22dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">1dp</item>
+    </style>
+</resources>
