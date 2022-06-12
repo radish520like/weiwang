@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">微网</string>
     <string name="app_title">欢迎登录微网</string>
+    <!--  account security  -->
+    <string name="account_security_title">微网账户安全</string>
+    <string name="account_security_frozen">冻结账户</string>
+    <string name="account_security_thaw">解冻账户</string>
+    <string name="account_security_appeal">账户申诉</string>
+    <string name="account_security_frozen_title">微网账户冻结</string>
+    <string name="account_security_thaw_title">微网账户解冻</string>
+    <string name="account_security_appeal_title">微网账户解封申诉</string>
+    <string name="account_security_frozen_phone_hint">请输入手机号</string>
+    <string name="account_security_frozen_name_hint">请输入姓名</string>
+    <string name="account_security_frozen_id_card_hint">请输入身份证号</string>
+    <string name="account_security_appeal_button">获取验证码解封账户</string>
+    <string name="account_security_thaw_button">获取验证码解冻账户</string>
 
     <!--  Login & Register  -->
     <string name="register_explain">未注册的手机号验证后自动创建微网账号</string>
@@ -27,7 +40,7 @@
     <string name="register_read_text">我已阅读并同意《微网用户服务协议》、《隐私政策》、《中国移动认证服务条款》，并授权微网使用本页面收集的账号信息进行统一管理。</string>
 
     <string name="register_read_text_2">本页面收集的信息仅用于注册账号</string>
-    <string name="license_server_protocol">软件许可及服务协议</string>
+    <string name="license_server_protocol">微网用户协议</string>
     <string name="license_server_content">欢迎你使用ILIVE软件及服务！\n\n
 为使用ILIVE软件（以下简称“本软件”）及服务，你应当阅读并遵守《ILIVE软件许可及服务协议》（以下简称“本协议”），以及《腾讯服务协议》 。请你务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制、免责条款可能以加粗等形式提示你注意。\n\n
 除非你已阅读并接受本协议所有条款，否则你无权下载、安装或使用本软件及相关服务。你的下载、安装、使用、获取微信帐号、登录等行为即视为你已阅读并同意上述协议的约束。\n\n
@@ -43,6 +56,8 @@
     <string name="tab_tag_ilive">ILive</string>
     <string name="tab_tag_service">服务</string>
     <string name="tab_tag_my">我的</string>
+
+    <string name="main_title_setting">设置</string>
     
     <!--  user info  -->
     <string name="user_info_item_nick_name">昵称</string>
@@ -53,5 +68,6 @@
 
     <!--  toast text  -->
     <string name="toast_telephone_error">请输入合法的手机号</string>
+    <string name="toast_read_server_clause">请阅读并同意服务条款</string>
 
 </resources>

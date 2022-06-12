@@ -1,5 +1,6 @@
 package com.hhsj.ilive.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
+import com.hhsj.ilive.AccountSecurityActivity
 import com.hhsj.ilive.BaseActivity
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
@@ -33,7 +35,7 @@ class VerifyCodeFragment : BaseFragment() {
     private lateinit var mVerifyCodeMsgTextView: TextView
     private lateinit var mProgress: ProgressBar
     private lateinit var mBackImageView: ImageView
-    private lateinit var mTelephone: String
+    private lateinit var mHelpImageView: ImageView
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
     private val mCountDownTimer by lazy {
         object : CountDownTimer(59999, 1000) {
@@ -64,6 +66,7 @@ class VerifyCodeFragment : BaseFragment() {
         mRootView = view.findViewById(R.id.root_view)
         mProgress = view.findViewById(R.id.progress)
         mTitleTextView = view.findViewById(R.id.tv_title)
+        mHelpImageView = view.findViewById(R.id.iv_help)
         mVerifyCode = view.findViewById(R.id.verify_code)
         mBackImageView = view.findViewById(R.id.iv_back)
         mVerifyCodeTip = view.findViewById(R.id.tv_verify_code_tip)
@@ -75,6 +78,8 @@ class VerifyCodeFragment : BaseFragment() {
 
     private fun initMargin() {
         margin(mRootView, mTitleTextView, ConstraintSet.TOP, mRootView, ConstraintSet.TOP, 39.2f)
+        margin(mRootView,mVerifyCode,ConstraintSet.TOP,mVerifyCodeTip,ConstraintSet.BOTTOM,11.7f)
+        margin(mRootView,mVerifyCodeMsgTextView,ConstraintSet.TOP,mVerifyCode,ConstraintSet.BOTTOM,11.7f)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -90,12 +95,12 @@ class VerifyCodeFragment : BaseFragment() {
     private fun initListener() {
         //验证码输入完毕
         mVerifyCode.setOnCompletionListener {
-            mProgress.visibility = View.VISIBLE
             mUserInfoViewModelProvider.registerOrLogin(mUserInfoViewModelProvider.getPhone(), it, {
                 mProgress.visibility = View.GONE
                 mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_to_mainActivity)
                 activity?.finish()
             }, { errorMsg ->
+                mVerifyCode.clear()
                 mProgress.visibility = View.GONE
                 errorMsg?.let {
                     CustomToast.getInstance(requireContext().applicationContext)
@@ -112,6 +117,11 @@ class VerifyCodeFragment : BaseFragment() {
         }
         mBackImageView.setOnClickListener {
             mBackImageView.findNavController().popBackStack()
+        }
+
+        mHelpImageView.setOnClickListener {
+            val intent = Intent(activity, AccountSecurityActivity::class.java)
+            startActivity(intent)
         }
     }
 

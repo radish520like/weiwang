@@ -21,10 +21,11 @@
     
     <color name="login_register_text_color">#2A82E4</color>
     <color name="text_protocol_tips">#A2A2A2</color>
+    <color name="text_verify_code_tips">#121217</color>
 
     <color name="text_no_enabled_color">#222227</color>
     <color name="text_enabled_color">#FFFFFF</color>
-
+    <color name="background_main_bottom_tab">#F9F9F9</color>
 
     <color name="white_100">#FFFFFF</color>
     <color name="white_80">#F2F2F2</color>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_logout_login"
+    app:startDestination="@id/accountSecurityFragment">
+    <fragment
+        android:id="@+id/accountSecurityFragment"
+        android:name="com.hhsj.ilive.ui.account.AccountSecurityFragment"
+        android:label="AccountSecurityFragment"
+        tools:layout="@layout/fragment_account_security">
+        <action
+            android:id="@+id/action_accountSecurityFragment_to_frozenAccountFragment"
+            app:destination="@id/frozenAccountFragment" />
+        <action
+            android:id="@+id/action_accountSecurityFragment_to_thawAccountFragment"
+            app:destination="@id/thawAccountFragment" />
+        <action
+            android:id="@+id/action_accountSecurityFragment_to_appealAccountFragment"
+            app:destination="@id/appealAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/frozenAccountFragment"
+        android:name="com.hhsj.ilive.ui.account.FrozenAccountFragment"
+        android:label="FrozenAccountFragment" />
+    <fragment
+        android:id="@+id/thawAccountFragment"
+        android:name="com.hhsj.ilive.ui.account.ThawAccountFragment"
+        android:label="ThawAccountFragment" />
+    <fragment
+        android:id="@+id/appealAccountFragment"
+        android:name="com.hhsj.ilive.ui.account.AppealAccountFragment"
+        android:label="AppealAccountFragment" />
+</navigation>

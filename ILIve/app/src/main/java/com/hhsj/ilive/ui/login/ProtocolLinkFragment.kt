@@ -5,7 +5,9 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
 import com.hhsj.ilive.widget.CustomCheckBox
@@ -16,7 +18,7 @@ import com.hhsj.ilive.widget.CustomCheckBox
  */
 class ProtocolLinkFragment: BaseFragment() {
 
-    private lateinit var mHasReadCheckBox: CustomCheckBox
+    private lateinit var mCloseImageView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +33,14 @@ class ProtocolLinkFragment: BaseFragment() {
         var mContentTextView: TextView = view.findViewById(R.id.tv_content)
         mContentTextView.movementMethod = ScrollingMovementMethod.getInstance()
 
-        mHasReadCheckBox = view.findViewById(R.id.checkbox_read)
+        mCloseImageView = view.findViewById(R.id.iv_close)
 
         initListener()
     }
 
     private fun initListener(){
-        mHasReadCheckBox.onCheckedChangeListener {}
+        mCloseImageView.setOnClickListener {
+            it.findNavController().popBackStack()
+        }
     }
 }

@@ -7,25 +7,23 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        style="@style/LeftActionIcon"
-        android:layout_marginStart="19dp"
+        style="@style/TitleIcon"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:src="@mipmap/icon_go_back"/>
 
-    <TextView
+    <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="设置"
-        android:textColor="@color/black_100"
+        android:text="@string/main_title_setting"
+        android:textColor="@color/text_verify_code_tips"
         android:textSize="18sp"
+        app:textFont="Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/iv_back"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -72,13 +70,13 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
+    <com.hhsj.ilive.widget.CustomEnableTextView
         android:id="@+id/tv_logout"
         style="@style/Login_Regis_Button_Style"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="30dp"
         android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"

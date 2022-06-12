@@ -5,43 +5,33 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_100"
-    android:paddingStart="19dp"
-    android:paddingEnd="19dp">
+    android:background="@color/white_100">
 
     <ImageView
         android:id="@+id/iv_help"
-        style="@style/RightActionIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        style="@style/TitleIcon"
+        android:layout_marginEnd="16dp"
         android:src="@mipmap/icon_help_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:background="@drawable/shape_circle_image_view_stroke"
-        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
-        app:layout_constraintEnd_toEndOf="@id/iv_avatar"
-        app:layout_constraintStart_toStartOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatar"
         android:layout_width="108dp"
         android:layout_height="108dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/white_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:textSize="20sp"
+        android:textSize="19sp"
+        app:textFont="Regular"
         app:layout_constraintEnd_toEndOf="@id/iv_avatar"
         app:layout_constraintStart_toStartOf="@id/iv_avatar"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
@@ -53,26 +43,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <com.hhsj.ilive.widget.CustomEnableTextView
         android:id="@+id/btn_login"
         style="@style/Login_Regis_Button_Style"
-        android:layout_width="290dp"
-        android:layout_height="52dp"
         android:text="@string/obtain_verify_code"
+        app:textFont="Regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_view" />
+        app:layout_constraintBottom_toTopOf="@id/line_view" />
 
-    <TextView
+    <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_switch_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/switch_account"
         android:textColor="@color/black_40"
-        android:textSize="13sp"
+        android:textSize="12sp"
+        app:textFont="Normal"
         app:layout_constraintEnd_toEndOf="@id/btn_login"
         app:layout_constraintStart_toStartOf="@id/btn_login"
-        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

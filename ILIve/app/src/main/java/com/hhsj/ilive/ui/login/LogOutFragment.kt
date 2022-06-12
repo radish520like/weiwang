@@ -14,6 +14,8 @@ import androidx.navigation.findNavController
 import com.hhsj.ilive.LoginActivity
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
+import com.hhsj.ilive.ui.main.my.UserInfoActivity
+import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 
 /**
@@ -25,10 +27,12 @@ class LogOutFragment : BaseFragment() {
     private lateinit var mTitleTextView: TextView
     private lateinit var mLogoImageView: ImageView
     private lateinit var mExplainTextView: TextView
+    private lateinit var mBottomView: View
     private lateinit var mBottomLinearLayout: LinearLayout
     private lateinit var mRootView: ConstraintLayout
     private lateinit var mLogoutTextView: TextView
     private lateinit var mCancelTextView: TextView
+    private lateinit var mActivity: UserInfoActivity
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
 
     override fun onCreateView(
@@ -44,6 +48,7 @@ class LogOutFragment : BaseFragment() {
         mBottomLinearLayout = view.findViewById(R.id.bottom_ll)
         mTitleTextView = view.findViewById(R.id.tv_title)
         mLogoImageView = view.findViewById(R.id.iv_logo)
+        mBottomView = view.findViewById(R.id.bottom_view)
         mExplainTextView = view.findViewById(R.id.tv_explain)
 
         mLogoutTextView = view.findViewById(R.id.tv_logout)
@@ -51,6 +56,12 @@ class LogOutFragment : BaseFragment() {
 
         initViewMargin()
         initListener()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mActivity = activity as UserInfoActivity
+        mUserInfoViewModelProvider = mActivity.mUserInfoViewModelProvider
     }
 
     private fun initViewMargin() {
@@ -64,6 +75,9 @@ class LogOutFragment : BaseFragment() {
             hideSoft()
         }
         mLogoutTextView.setOnClickListener {
+            mUserInfoViewModelProvider.logout({
+                LogUtils.e("logout Success")
+            }, {})
             val intent = Intent(activity, LoginActivity::class.java)
             intent.putExtra("fromLogOutPage",true)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

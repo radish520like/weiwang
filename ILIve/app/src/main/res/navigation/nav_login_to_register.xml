@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_loginFragment_to_verifyCodeFragment"
             app:destination="@id/verifyCodeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_protocolLinkFragment"
+            app:destination="@id/protocolLinkFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifyCodeFragment"
@@ -26,4 +29,8 @@
         android:name="com.hhsj.ilive.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/protocolLinkFragment"
+        android:name="com.hhsj.ilive.ui.login.ProtocolLinkFragment"
+        android:label="ProtocolLinkFragment" />
 </navigation>

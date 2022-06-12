@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_80"
+    tools:context=".ui.login.LoginFragment">
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_security_appeal_title"
+        android:textColor="@color/app_title_color"
+        android:textSize="27sp"
+        app:textFont="Normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        style="@style/TitleIcon"
+        android:layout_marginStart="16dp"
+        android:src="@mipmap/icon_go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.hhsj.ilive.widget.CustomFontEditText
+        android:id="@+id/et_phone"
+        android:layout_height="48dp"
+        android:layout_width="328dp"
+        app:textFont="Normal"
+        android:gravity="center"
+        android:maxLines="1"
+        android:hint="@string/account_security_frozen_phone_hint"
+        android:textColorHint="@color/register_login_edit_hint"
+        android:textColor="@color/app_title_color"
+        android:background="@drawable/shape_round_rect_white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp" />
+
+    <com.hhsj.ilive.widget.CustomFontEditText
+        android:id="@+id/et_name"
+        android:layout_height="48dp"
+        android:layout_width="328dp"
+        app:textFont="Normal"
+        android:gravity="center"
+        android:hint="@string/account_security_frozen_name_hint"
+        android:textColorHint="@color/register_login_edit_hint"
+        android:textColor="@color/app_title_color"
+        android:background="@drawable/shape_round_rect_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_phone"
+        android:textSize="18sp" />
+
+    <com.hhsj.ilive.widget.CustomFontEditText
+        android:id="@+id/et_id_card"
+        android:layout_height="48dp"
+        android:layout_width="328dp"
+        app:textFont="Normal"
+        android:gravity="center"
+        android:hint="@string/account_security_frozen_id_card_hint"
+        android:textColorHint="@color/register_login_edit_hint"
+        android:textColor="@color/app_title_color"
+        android:background="@drawable/shape_round_rect_white"
+        app:layout_constraintTop_toBottomOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp" />
+
+    <com.hhsj.ilive.widget.CustomEnableTextView
+        android:id="@+id/tv_frozen"
+        style="@style/Login_Regis_Button_Style"
+        android:layout_width="268dp"
+        android:layout_height="48dp"
+        app:textFont="Regular"
+        android:text="@string/account_security_appeal_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

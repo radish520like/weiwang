@@ -3,28 +3,26 @@ package com.hhsj.ilive.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hhsj.ilive.data.UserInfo
+import com.hhsj.ilive.repository.UserInfoRepository
 import com.hhsj.ilive.server.HttpServer
-import com.hhsj.ilive.utils.SPUtils
 
 class UserInfoViewModel: ViewModel() {
 
     var phoneNumber: MutableLiveData<String> = MutableLiveData()
     var readChecked: MutableLiveData<Boolean> = MutableLiveData(false)
     private var userInfo: MutableLiveData<UserInfo> = MutableLiveData()
+    private val userInfoRepository: UserInfoRepository = UserInfoRepository()
 
-    fun setUserInfo(info: UserInfo){
+    private fun setUserInfo(info: UserInfo){
         userInfo.value = info
-        SPUtils.putString("token",info.token)
-        SPUtils.putString("phone",info.data.phone)
-        SPUtils.putString("nickName",info.data.nickName)
-        SPUtils.putString("header",info.data.header)
-        SPUtils.putString("account",info.data.account)
+        userInfoRepository.saveUserInfo(info)
     }
 
-    fun getToken() = SPUtils.getString("token")
-    fun getPhone() = phoneNumber.value?: SPUtils.getString("phone")
-    fun getHeader() = SPUtils.getString("header")
-    fun getNickName() = SPUtils.getString("nickName")
+    fun getToken() = userInfoRepository.getToken()
+    fun getPhone() = phoneNumber.value?:userInfoRepository.getPhone()
+    fun getHeader() = userInfoRepository.getHeader()
+    fun getNickName() = userInfoRepository.getNickName()
+    fun setToken(token: String) = userInfoRepository.setToken(token)
 
     fun getVerifyCode(success: () -> Unit,failure: (String?) -> Unit){
         HttpServer.getVerifyCode(phoneNumber.value?: getPhone(),success,failure)
@@ -38,6 +36,7 @@ class UserInfoViewModel: ViewModel() {
     }
 
     fun logout(success: () -> Unit,failure: () -> Unit){
+        setToken("")
         HttpServer.logout(getToken(),{
             success.invoke()
         },failure)

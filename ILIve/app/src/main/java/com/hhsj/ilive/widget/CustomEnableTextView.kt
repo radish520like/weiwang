@@ -5,9 +5,10 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import com.hhsj.ilive.R
 import android.graphics.Typeface
+import androidx.core.content.res.ResourcesCompat
 
-open class CustomFontTextView(context: Context, attrs: AttributeSet) :
-    AppCompatTextView(context, attrs) {
+class CustomEnableTextView(context: Context, attrs: AttributeSet) :
+    CustomFontTextView(context, attrs) {
 
     init{
         val obtainStyledAttributes =
@@ -31,5 +32,13 @@ open class CustomFontTextView(context: Context, attrs: AttributeSet) :
         }
         val typeFace = Typeface.createFromAsset(context.assets, path)
         typeface = typeFace
+    }
+
+    fun canClick(enable: Boolean){
+        background = if(enable){
+            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_enable,resources.newTheme())
+        }else{
+            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_no_enable,resources.newTheme())
+        }
     }
 }

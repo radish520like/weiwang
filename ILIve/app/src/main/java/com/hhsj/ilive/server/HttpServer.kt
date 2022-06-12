@@ -2,6 +2,7 @@ package com.hhsj.ilive.server
 
 import com.hhsj.ilive.data.HttpResponse
 import com.hhsj.ilive.data.UserInfo
+import com.hhsj.ilive.utils.LogUtils
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -38,9 +39,10 @@ object HttpServer {
         retrofit.registerOrLogin(requestBody).enqueue(object: Callback<UserInfo>{
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
                 val userInfo = response.body()
+                LogUtils.e("registerOrLogin : $userInfo")
                 if(userInfo != null){
                     val userInfoCode = userInfo.code
-                    if(userInfoCode == 500){
+                    if(userInfoCode != 200){
                         failure(userInfo.msg)
                     }else{
                         success(userInfo)

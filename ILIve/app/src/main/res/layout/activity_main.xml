@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -20,6 +19,7 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_main_bottom_tab"
         app:tabUnboundedRipple="true"
         app:tabIndicator="@android:color/transparent"
         app:tabSelectedTextColor="@color/round_rect_button_enable"

@@ -3,36 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login_to_register"
-    app:startDestination="@id/loginForLogOutFragment2">
-    <fragment
-        android:id="@+id/verifyCodeFragment"
-        android:name="com.hhsj.ilive.ui.login.VerifyCodeFragment"
-        android:label="VerifyCodeFragment" >
-        <action
-            android:id="@+id/action_verifyCodeFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
-    </fragment>
+    app:startDestination="@id/loginForLogOutFragment">
     <activity
         android:id="@+id/mainActivity"
         android:name="com.hhsj.ilive.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
-        android:id="@+id/loginForLogOutFragment2"
-        android:name="com.hhsj.ilive.ui.login.LoginForLogOutFragment"
-        android:label="LoginForLogOutFragment" >
+        android:id="@+id/verifyCodeFragment"
+        android:name="com.hhsj.ilive.ui.login.VerifyCodeFragment"
+        android:label="VerifyCodeFragment">
         <action
-            android:id="@+id/action_loginForLogOutFragment2_to_verifyCodeFragment"
-            app:destination="@id/verifyCodeFragment" />
-        <action
-            android:id="@+id/action_loginForLogOutFragment2_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            android:id="@+id/action_verifyCodeFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment2"
+        android:id="@+id/loginForLogOutFragment"
+        android:name="com.hhsj.ilive.ui.login.LoginForLogOutFragment"
+        android:label="LoginForLogOutFragment">
+        <action
+            android:id="@+id/action_loginForLogOutFragment_to_verifyCodeFragment"
+            app:destination="@id/verifyCodeFragment" />
+        <action
+            android:id="@+id/action_loginForLogOutFragment_to_loginFragment"
+            app:destination="@id/loginFragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
         android:name="com.hhsj.ilive.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_verifyCodeFragment"
             app:destination="@id/verifyCodeFragment" />

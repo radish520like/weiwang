@@ -1,5 +1,6 @@
 package com.hhsj.ilive.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
+import com.hhsj.ilive.AccountSecurityActivity
 import com.hhsj.ilive.BaseActivity
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
+import com.hhsj.ilive.widget.CustomEnableTextView
 
 /**
  * 登出后展示的登陆界面
@@ -20,9 +26,10 @@ import com.hhsj.ilive.ui.BaseFragment
  */
 class LoginForLogOutFragment : BaseFragment() {
 
-    private lateinit var mLoginButton: TextView
+    private lateinit var mLoginButton: CustomEnableTextView
     private lateinit var mPhoneTextView: TextView
     private lateinit var mAvatarImageView: ImageView
+    private lateinit var mHelperImageView: ImageView
     private lateinit var mSwitchAccountTextView: TextView
     private lateinit var mLineView: View
     private lateinit var mRootView: ConstraintLayout
@@ -41,8 +48,10 @@ class LoginForLogOutFragment : BaseFragment() {
         mPhoneTextView = view.findViewById(R.id.tv_phone)
         mLineView = view.findViewById(R.id.line_view)
         mAvatarImageView = view.findViewById(R.id.iv_avatar)
+        mHelperImageView = view.findViewById(R.id.iv_help)
         mSwitchAccountTextView = view.findViewById(R.id.tv_switch_account)
 
+        mLoginButton.canClick(true)
         initMargin()
         initListener()
     }
@@ -61,17 +70,22 @@ class LoginForLogOutFragment : BaseFragment() {
 
     private fun initMargin(){
         margin(mRootView,mAvatarImageView, ConstraintSet.TOP,mRootView,ConstraintSet.TOP,40f)
-        margin(mRootView,mLineView, ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,57.4f)
+        margin(mRootView,mLineView, ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,44.1f)
+        margin(mRootView,mSwitchAccountTextView, ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,33.6f)
     }
 
     private fun initListener(){
         mLoginButton.setOnClickListener {
-//            it.findNavController().popBackStack()
-            it.findNavController().navigate(R.id.action_loginForLogOutFragment2_to_verifyCodeFragment)
+            it.findNavController().navigate(R.id.action_loginForLogOutFragment_to_verifyCodeFragment)
+        }
+        mHelperImageView.setOnClickListener {
+            val intent = Intent(activity,AccountSecurityActivity::class.java)
+            startActivity(intent)
         }
         mSwitchAccountTextView.setOnClickListener {
-//            it.findNavController().popBackStack()
-            it.findNavController().navigate(R.id.action_loginForLogOutFragment2_to_loginFragment2)
+            val bundle = Bundle()
+            bundle.putBoolean("fromSwitchAccount",true)
+            it.findNavController().navigate(R.id.action_loginForLogOutFragment_to_loginFragment,bundle)
         }
     }
 }

@@ -35,6 +35,11 @@
             android:screenOrientation="portrait" >
 
         </activity>
+
+        <activity
+            android:name=".AccountSecurityActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

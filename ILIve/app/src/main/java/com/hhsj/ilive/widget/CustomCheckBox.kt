@@ -8,10 +8,15 @@ import com.hhsj.ilive.R
 
 class CustomCheckBox(context: Context, attrs: AttributeSet?) : AppCompatImageView(context, attrs) {
 
-    private var mIsChecked: Boolean = false
+    var mIsChecked: Boolean = false
+        set(value) {
+            field = value
+            setBackground()
+        }
+
     private var onCheckedListener: ((isChecked: Boolean) -> Unit)? = null
 
-    init{
+    init {
         setBackground()
         setOnClickListener {
             mIsChecked = !mIsChecked
@@ -20,25 +25,20 @@ class CustomCheckBox(context: Context, attrs: AttributeSet?) : AppCompatImageVie
         }
     }
 
-    private fun setBackground(){
+    private fun setBackground() {
         background = if (mIsChecked) {
             ResourcesCompat.getDrawable(
                 context.resources,
                 R.mipmap.icon_checkbox_checked,
                 null
             )
-        }else{
+        } else {
             ResourcesCompat.getDrawable(
                 context.resources,
                 R.mipmap.icon_checkbox_unchecked,
                 null
             )
         }
-    }
-
-    fun setChecked(checked: Boolean){
-        mIsChecked = checked
-        setBackground()
     }
 
     fun onCheckedChangeListener(onChecked: (isChecked: Boolean) -> Unit) {

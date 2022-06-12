@@ -16,4 +16,10 @@ object SPUtils {
     }
 
     fun getString(key: String, default: String = "") = sharedPreferences.getString(key, default)!!
+
+    fun clear(){
+        val edit = sharedPreferences.edit()
+        edit.clear()
+        edit.apply()
+    }
 }
