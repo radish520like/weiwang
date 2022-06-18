@@ -10,16 +10,18 @@
     <ImageView
         android:id="@+id/iv_close"
         style="@style/TitleIcon"
+        android:padding="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:src="@mipmap/icon_delete"/>
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="43dp"
         android:layout_marginTop="45dp"
+        android:gravity="center"
         android:text="@string/license_server_protocol"
         android:textColor="@color/text_verify_code_tips"
         android:textSize="18sp"

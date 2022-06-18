@@ -87,8 +87,15 @@ class VerifyCodeFragment : BaseFragment() {
         mUserInfoViewModelProvider = (activity as BaseActivity).mUserInfoViewModelProvider
         //获取验证码
         mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
-        mVerifyCodeTip.text =
-            getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
+        val fromLogOut = arguments?.getBoolean("fromLogOut")
+        if(fromLogOut != null && fromLogOut){
+            mVerifyCodeTip.text =
+                getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone().replaceRange(3..6,"****"))
+        }else{
+            mVerifyCodeTip.text =
+                getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
+        }
+
         mCountDownTimer.start()
     }
 
@@ -123,6 +130,16 @@ class VerifyCodeFragment : BaseFragment() {
             val intent = Intent(activity, AccountSecurityActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showSoft(mVerifyCode.getEditText())
+    }
+
+    override fun onPause() {
+        super.onPause()
+        hideSoftWithEditText(mVerifyCode.getEditText())
     }
 
     override fun onDestroy() {

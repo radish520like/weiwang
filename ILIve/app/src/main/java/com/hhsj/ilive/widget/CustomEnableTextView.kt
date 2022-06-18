@@ -35,10 +35,11 @@ class CustomEnableTextView(context: Context, attrs: AttributeSet) :
     }
 
     fun canClick(enable: Boolean){
-        background = if(enable){
-            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_enable,resources.newTheme())
-        }else{
-            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_no_enable,resources.newTheme())
-        }
+//        background = if(enable){
+//            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_enable,resources.newTheme())
+//        }else{
+//            ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_no_enable,resources.newTheme())
+//        }
+        background =ResourcesCompat.getDrawable(resources,R.drawable.shape_round_rect_button_enable,resources.newTheme())
     }
 }

@@ -24,34 +24,46 @@
         android:id="@+id/et_telephone"
         style="@style/Login_Regis_EditText_Style"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:autofillHints="phone"
         android:ems="10"
+        android:gravity="center"
         android:textCursorDrawable="@drawable/shape_edittext_cursor"
         android:hint="@string/input_telephone"
+        android:background="@null"
         android:inputType="phone"
         android:maxLength="11"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/tv_explain"
         app:layout_constraintStart_toStartOf="@id/tv_explain"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
+    
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="216dp"
+        android:layout_height="0.4dp"
+        android:background="@color/register_login_edit_hint"
+        app:layout_constraintTop_toBottomOf="@id/et_telephone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_explain"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:textSize="12sp"
         app:textFont="Light"
+        android:gravity="center"
         android:text="@string/register_explain"
         android:textColor="@color/register_login_edit_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_telephone" />
+        app:layout_constraintTop_toBottomOf="@id/view_line" />
 
     <ImageView
         android:id="@+id/iv_back"
         style="@style/TitleIcon"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="5dp"
         android:src="@mipmap/icon_go_back"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +72,7 @@
     <ImageView
         android:id="@+id/iv_help"
         style="@style/TitleIcon"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
         android:src="@mipmap/icon_help_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -76,12 +88,24 @@
         android:padding="5dp"
         android:src="@mipmap/icon_delete"/>
 
-    <com.hhsj.ilive.widget.CustomCheckBox
+    <com.hhsj.ilive.widget.CustomCheckBoxImageView
         android:id="@+id/checkbox_read"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        app:layout_constraintStart_toStartOf="@id/btn_login"
-        app:layout_constraintTop_toTopOf="@id/tv_read" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="44dp"
+        android:src="@mipmap/icon_checkbox_unchecked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/checkbox_view"
+        app:layout_constraintBottom_toBottomOf="@id/checkbox_view"/>
+
+    <View
+        android:id="@+id/checkbox_view"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_read"/>
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_read"
@@ -91,7 +115,6 @@
         android:textColor="@color/register_login_edit_hint"
         android:textSize="11sp"
         app:textFont="Light"
-        android:layout_marginStart="6dp"
         app:layout_constraintEnd_toEndOf="@id/btn_login"
         app:layout_constraintStart_toEndOf="@id/checkbox_read"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -20,8 +20,9 @@
     </style>
 
     <style name="TitleIcon">
-        <item name="android:layout_width">22dp</item>
-        <item name="android:layout_height">22dp</item>
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:padding">11dp</item>
         <item name="android:layout_marginTop">45dp</item>
     </style>
 </resources>

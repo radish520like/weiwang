@@ -23,7 +23,7 @@ import com.hhsj.ilive.LoginActivity
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
-import com.hhsj.ilive.widget.CustomCheckBox
+import com.hhsj.ilive.widget.CustomCheckBoxImageView
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomToast
 
@@ -43,7 +43,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var mRootView: ConstraintLayout
     private lateinit var mLineView: View
     private lateinit var mBackImageView: ImageView
-    private lateinit var mReadCheckBox: CustomCheckBox
+    private lateinit var mReadCheckBox: CustomCheckBoxImageView
     private lateinit var mActivity: LoginActivity
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
 
@@ -116,10 +116,10 @@ class LoginFragment : BaseFragment() {
 
         mLoginButton.setOnClickListener {
             val text = mTelephoneEditText.text.toString()
-            if (text.length != 11 || text[0] != '1') {
+            if (text.length != 11 || text[0] != '1' || text.toLongOrNull() == null) {
                 CustomToast.getInstance(requireContext().applicationContext)
                     .show(resources.getString(R.string.toast_telephone_error))
-            }else if(!mReadCheckBox.mIsChecked){
+            } else if(!mReadCheckBox.mIsChecked){
                 CustomToast.getInstance(requireContext().applicationContext)
                     .show(resources.getString(R.string.toast_read_server_clause))
             } else {
@@ -138,6 +138,9 @@ class LoginFragment : BaseFragment() {
                 mDeleteImageView.visibility = View.VISIBLE
             } else {
                 mDeleteImageView.visibility = View.GONE
+            }
+            if(content.length == 11){
+                hideSoft()
             }
         }
 

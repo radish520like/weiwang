@@ -65,10 +65,7 @@ class MyFragment : BaseFragment() {
         LogUtils.e("avatar: $header -- phone: $phone")
 
         mUserNameTextView.text = nickName
-
-        if (phone.isNotEmpty()) {
-            mPhoneTextView.text = phone.replaceRange(3..6, "****")
-        }
+        mPhoneTextView.text = phone
     }
 
     private fun initListener() {

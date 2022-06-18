@@ -6,6 +6,7 @@ import android.text.Editable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -120,4 +121,6 @@ class CustomVerifyCodeView(context: Context, attrs: AttributeSet?) :
     fun setOnCompletionListener(block: (msg: String) -> Unit) {
         mOnCompletion = block
     }
+
+    public fun getEditText() = mVertifyCodeEditText
 }

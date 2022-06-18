@@ -94,10 +94,8 @@
         <com.hhsj.ilive.widget.CustomFontTextView
             android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="86dp"
             android:gravity="center"
-            android:paddingTop="16dp"
-            android:paddingBottom="30dp"
             android:background="@color/white"
             android:text="@string/user_info_logout_dialog_cancel"
             android:textColor="@color/black_100"

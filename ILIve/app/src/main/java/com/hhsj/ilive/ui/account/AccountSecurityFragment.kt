@@ -66,15 +66,15 @@ class AccountSecurityFragment : BaseFragment() {
             activity?.finish()
         }
 
-        mFrozenTextView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_frozenAccountFragment)
-        }
-        mThawTextView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_thawAccountFragment)
-        }
-        mAppealTextView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_appealAccountFragment)
-        }
+//        mFrozenTextView.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_frozenAccountFragment)
+//        }
+//        mThawTextView.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_thawAccountFragment)
+//        }
+//        mAppealTextView.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_accountSecurityFragment_to_appealAccountFragment)
+//        }
     }
 
 }

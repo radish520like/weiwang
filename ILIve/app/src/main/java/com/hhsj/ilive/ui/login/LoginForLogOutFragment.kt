@@ -76,7 +76,9 @@ class LoginForLogOutFragment : BaseFragment() {
 
     private fun initListener(){
         mLoginButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginForLogOutFragment_to_verifyCodeFragment)
+            val bundle = Bundle()
+            bundle.putBoolean("fromLogOut",true)
+            it.findNavController().navigate(R.id.action_loginForLogOutFragment_to_verifyCodeFragment,bundle)
         }
         mHelperImageView.setOnClickListener {
             val intent = Intent(activity,AccountSecurityActivity::class.java)

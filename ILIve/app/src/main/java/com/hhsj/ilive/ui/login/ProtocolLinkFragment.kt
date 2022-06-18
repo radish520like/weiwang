@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.BaseFragment
-import com.hhsj.ilive.widget.CustomCheckBox
 
 /**
  * 协议界面

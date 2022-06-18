@@ -34,8 +34,8 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="8dp"
+        android:layout_height="14dp"
         android:src="@mipmap/icon_arrow_right" />
 
 </LinearLayout>

@@ -16,18 +16,22 @@
         <entry key="app/src/main/res/drawable/shape_round_rect_button_enable.xml" value="0.25277777777777777" />
         <entry key="app/src/main/res/drawable/shape_round_rect_button_no_enable.xml" value="0.25277777777777777" />
         <entry key="app/src/main/res/drawable/shape_round_rect_white.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/layout/activity_business_card.xml" value="0.1296875" />
+        <entry key="app/src/main/res/layout/activity_bussiness_card.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_user_info.xml" value="0.12952898550724637" />
         <entry key="app/src/main/res/layout/activity_verify.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_account_security.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_address_book.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ilive.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.17763840746119028" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16429170159262363" />
         <entry key="app/src/main/res/layout/fragment_login_for_logout.xml" value="0.1322463768115942" />
         <entry key="app/src/main/res/layout/fragment_logout.xml" value="0.12537993920972645" />
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_protocol.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.23596014492753623" />
         <entry key="app/src/main/res/layout/fragment_service.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.12952898550724637" />
         <entry key="app/src/main/res/layout/fragment_verify_code.xml" value="0.15125968608713525" />
