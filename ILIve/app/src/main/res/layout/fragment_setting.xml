@@ -45,45 +45,67 @@
             android:paddingEnd="18dp">
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:id="@+id/info_item_view_account_safe"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:title="@string/setting_item_title_account_safe"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.hhsj.ilive.widget.CustomEnableTextView
+        android:id="@+id/tv_switch_account"
+        style="@style/Login_Regis_Button_Style"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/switch_account"
+        app:layout_constraintTop_toBottomOf="@id/scrollview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.hhsj.ilive.widget.CustomEnableTextView
         android:id="@+id/tv_logout"
@@ -92,9 +114,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:text="@string/safe_log_out"
-        app:layout_constraintTop_toBottomOf="@id/scrollview"
+        app:layout_constraintTop_toBottomOf="@id/tv_switch_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

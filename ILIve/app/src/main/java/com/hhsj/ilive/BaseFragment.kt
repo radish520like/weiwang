@@ -7,6 +7,12 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+
+const val VERIFY_CODE_FROM_KEY = "verify_code_from_key"
+const val VERIFY_CODE_FROM_UPDATE_PHONE_NEW = "verify_code_from_update_phone_new"
+const val VERIFY_CODE_FROM_UPDATE_PHONE_OLD = "verify_code_from_update_phone_old"
+const val VERIFY_CODE_FROM_LOGOUT = "verify_code_from_logout"
 
 open class BaseFragment : Fragment() {
 
@@ -20,6 +26,10 @@ open class BaseFragment : Fragment() {
         mScreenHeightPixels = displayMetrics.heightPixels
     }
 
+    fun goBack(nacController: NavController){
+        nacController.popBackStack()
+    }
+
     fun hideSoft() {
         val inputMethodManager =
             activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -31,7 +41,7 @@ open class BaseFragment : Fragment() {
 
     fun hideSoftWithEditText(editText: EditText){
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0)
+        imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
     fun showSoft(editText: EditText){

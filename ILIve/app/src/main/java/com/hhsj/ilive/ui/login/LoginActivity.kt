@@ -3,7 +3,7 @@ package com.hhsj.ilive
 import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import com.hhsj.ilive.utils.SPUtils
+import com.hhsj.ilive.ui.main.MainActivity
 
 class LoginActivity : BaseActivity() {
 
@@ -19,7 +19,7 @@ class LoginActivity : BaseActivity() {
         val phone = mUserInfoViewModelProvider.getPhone()
         val token = mUserInfoViewModelProvider.getToken()
         if(token.isNotEmpty() && !fromLogOutPage){
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }else{
