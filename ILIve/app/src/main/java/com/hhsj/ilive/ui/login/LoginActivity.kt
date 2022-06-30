@@ -1,8 +1,10 @@
-package com.hhsj.ilive
+package com.hhsj.ilive.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import com.hhsj.ilive.BaseActivity
+import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.main.MainActivity
 
 class LoginActivity : BaseActivity() {

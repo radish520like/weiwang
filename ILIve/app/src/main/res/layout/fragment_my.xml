@@ -46,21 +46,32 @@
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
         <ImageView
+            android:id="@+id/iv_certification"
+            android:layout_width="60dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="12dp"
+            android:src="@mipmap/icon_certification"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name"/>
+
+        <ImageView
             android:id="@+id/iv_qr_code"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="30dp"
-            android:src="@mipmap/icon_qr_code"
+            android:transitionName="ImageQrCode"
+            android:src="@mipmap/icon_qr_code_1"
             app:layout_constraintBottom_toBottomOf="@+id/tv_phone"
             app:layout_constraintEnd_toStartOf="@id/iv_arrow"
             app:layout_constraintTop_toTopOf="@+id/tv_phone" />
 
         <ImageView
             android:id="@+id/iv_arrow"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="30dp"
-            android:src="@mipmap/icon_arrow_right"
+            android:src="@mipmap/icon_dark_arrow_right"
             app:layout_constraintBottom_toBottomOf="@id/iv_qr_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/iv_qr_code" />
@@ -88,13 +99,15 @@
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:showTitleIcon="true"/>
 
             <com.hhsj.ilive.widget.CustomMyInfoItemView
                 android:id="@+id/info_item_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="设置"
+                app:title="@string/main_title_setting"
+                app:showTitleIcon="true"
                 android:layout_marginTop="10dp" />
 
         </LinearLayout>

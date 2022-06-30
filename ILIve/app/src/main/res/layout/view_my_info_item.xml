@@ -10,6 +10,7 @@
     android:background="@drawable/shape_round_rect_white">
 
     <ImageView
+        android:id="@+id/iv_title"
         android:layout_width="19dp"
         android:layout_height="19dp"
         android:layout_marginEnd="11dp"
@@ -23,19 +24,18 @@
         app:textFont="Regular"
         android:gravity="center_vertical"
         android:textColor="@color/text_verify_code_tips"
-        android:textSize="15sp" />
+        android:textSize="18sp" />
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
         android:textColor="@color/black_0"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <ImageView
-        android:layout_width="8dp"
-        android:layout_height="14dp"
-        android:src="@mipmap/icon_arrow_right" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@mipmap/icon_light_arrow_right" />
 
 </LinearLayout>

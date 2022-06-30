@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        style="@style/TitleIcon"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/icon_go_back"/>
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setting_item_title_account_safe"
+        android:textColor="@color/text_verify_code_tips"
+        android:textSize="18sp"
+        app:textFont="Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@+id/iv_back"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_80"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="18dp">
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:id="@+id/info_item_view_account_safe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/setting_item_title_phone"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:showTitleIcon="true"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:title="@string/setting_item_title_logout"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

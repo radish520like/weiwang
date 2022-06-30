@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_user_qr_code_card"
+    app:startDestination="@id/QRCodeCardFragment">
+
+    <fragment
+        android:id="@+id/QRCodeCardFragment"
+        android:name="com.hhsj.ilive.ui.main.my.QRCodeCardFragment"
+        android:label="QRCodeCardFragment" />
+</navigation>

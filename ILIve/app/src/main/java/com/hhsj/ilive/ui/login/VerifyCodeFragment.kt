@@ -12,10 +12,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
-import com.hhsj.ilive.AccountSecurityActivity
-import com.hhsj.ilive.BaseActivity
-import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
+import com.hhsj.ilive.*
+import com.hhsj.ilive.ui.*
 import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomToast
@@ -26,6 +24,7 @@ import kotlin.math.floor
  * 验证码界面
  * @author YuHan
  */
+
 class VerifyCodeFragment : BaseFragment() {
 
     private lateinit var mVerifyCode: CustomVerifyCodeView
@@ -36,6 +35,7 @@ class VerifyCodeFragment : BaseFragment() {
     private lateinit var mProgress: ProgressBar
     private lateinit var mBackImageView: ImageView
     private lateinit var mHelpImageView: ImageView
+    private lateinit var mFromLogKey: String
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
     private val mCountDownTimer by lazy {
         object : CountDownTimer(59999, 1000) {
@@ -78,20 +78,47 @@ class VerifyCodeFragment : BaseFragment() {
 
     private fun initMargin() {
         margin(mRootView, mTitleTextView, ConstraintSet.TOP, mRootView, ConstraintSet.TOP, 39.2f)
-        margin(mRootView,mVerifyCode,ConstraintSet.TOP,mVerifyCodeTip,ConstraintSet.BOTTOM,11.7f)
-        margin(mRootView,mVerifyCodeMsgTextView,ConstraintSet.TOP,mVerifyCode,ConstraintSet.BOTTOM,11.7f)
+        margin(
+            mRootView,
+            mVerifyCode,
+            ConstraintSet.TOP,
+            mVerifyCodeTip,
+            ConstraintSet.BOTTOM,
+            11.7f
+        )
+        margin(
+            mRootView,
+            mVerifyCodeMsgTextView,
+            ConstraintSet.TOP,
+            mVerifyCode,
+            ConstraintSet.BOTTOM,
+            11.7f
+        )
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mUserInfoViewModelProvider = (activity as BaseActivity).mUserInfoViewModelProvider
         //获取验证码
-        mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
-        val fromLogOut = arguments?.getBoolean("fromLogOut")
-        if(fromLogOut != null && fromLogOut){
+        mFromLogKey = arguments?.getString(VERIFY_CODE_FROM_KEY) ?: ""
+        if (mFromLogKey.isEmpty() || mFromLogKey == VERIFY_CODE_FROM_LOGOUT) {
+            //登出切换账号时获取验证码
+//            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
+        } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
+            //校验手机号
+            //TODO
+//            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegist("",{},{})
+        } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
+            //TODO
+//            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegist("",{},{})
+        }
+        if (mFromLogKey.isNotEmpty() && mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
             mVerifyCodeTip.text =
-                getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone().replaceRange(3..6,"****"))
-        }else{
+                getString(
+                    R.string.verify_code_tips,
+                    mUserInfoViewModelProvider.getPhone().replaceRange(3..6, "****")
+                )
+        } else {
             mVerifyCodeTip.text =
                 getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
         }
@@ -102,25 +129,39 @@ class VerifyCodeFragment : BaseFragment() {
     private fun initListener() {
         //验证码输入完毕
         mVerifyCode.setOnCompletionListener {
-            mUserInfoViewModelProvider.registerOrLogin(mUserInfoViewModelProvider.getPhone(), it, {
-                mProgress.visibility = View.GONE
-                mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_to_mainActivity)
-                activity?.finish()
-            }, { errorMsg ->
-                mVerifyCode.clear()
-                mProgress.visibility = View.GONE
-                errorMsg?.let {
-                    CustomToast.getInstance(requireContext().applicationContext)
-                        .show(errorMsg)
-                }
-            })
+            if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
+                //TODO
+                mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
+            } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
+                //TODO
+                mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment)
+            } else {
+                mUserInfoViewModelProvider.registerOrLogin(
+                    mUserInfoViewModelProvider.getPhone(),
+                    it,
+                    {
+                        mProgress.visibility = View.GONE
+                        mVerifyCode.findNavController()
+                            .navigate(R.id.action_verifyCodeFragment_to_mainActivity)
+                        activity?.finish()
+                    },
+                    { errorMsg ->
+                        mVerifyCode.clear()
+                        mProgress.visibility = View.GONE
+                        errorMsg?.let {
+                            CustomToast.getInstance(requireContext().applicationContext)
+                                .show(errorMsg)
+                        }
+                    })
+            }
         }
 
         //重新获取验证码
         mVerifyCodeMsgTextView.setOnClickListener {
             mCountDownTimer.start()
             mVerifyCode.clear()
-            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
+            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },
+                { LogUtils.e(it) })
         }
         mBackImageView.setOnClickListener {
             mBackImageView.findNavController().popBackStack()

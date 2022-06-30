@@ -17,6 +17,12 @@ object SPUtils {
 
     fun getString(key: String, default: String = "") = sharedPreferences.getString(key, default)!!
 
+    fun putInt(key: String,value: Int){
+        sharedPreferences.edit().putInt(key, value).apply()
+    }
+
+    fun getInt(key: String,default: Int = 0) = sharedPreferences.getInt(key,default)
+
     fun clear(){
         val edit = sharedPreferences.edit()
         edit.clear()

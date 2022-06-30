@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_logout_login"
+    app:startDestination="@id/userInfoForUpdateFragment">
+
+    <fragment
+        android:id="@+id/userInfoForUpdateFragment"
+        android:name="com.hhsj.ilive.ui.main.my.UpdateUserInfoFragment"
+        android:label="UserInfoForUpdateFragment" >
+        <action
+            android:id="@+id/action_userInfoForUpdateFragment_to_updateNickNameFragment"
+            app:destination="@id/updateNickNameFragment" />
+        <action
+            android:id="@+id/action_userInfoForUpdateFragment_to_updateAccountFragment"
+            app:destination="@id/updateAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateNickNameFragment"
+        android:name="com.hhsj.ilive.ui.main.my.UpdateNickNameFragment"
+        android:label="UpdateNickNameFragment" />
+    <fragment
+        android:id="@+id/updateAccountFragment"
+        android:name="com.hhsj.ilive.ui.main.my.UpdateAccountFragment"
+        android:label="UpdateAccountFragment" />
+
+    <fragment
+        android:id="@+id/updatePhoneConfirmFragment"
+        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneConfirmFragment"
+        android:label="UpdatePhoneConfirmFragment" />
+
+
+</navigation>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomMyInfoItemView">
+        <attr name="showTitleIcon" format="boolean" />
         <attr name="title" format="string" />
         <attr name="value" format="string" />
     </declare-styleable>
@@ -34,4 +35,5 @@
             <enum name="Thin" value="9"/>
         </attr>
     </declare-styleable>
+
 </resources>

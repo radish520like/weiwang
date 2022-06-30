@@ -19,9 +19,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.hhsj.ilive.AccountSecurityActivity
-import com.hhsj.ilive.LoginActivity
+import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomCheckBoxImageView
 import com.hhsj.ilive.widget.CustomEnableTextView

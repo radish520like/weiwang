@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        style="@style/TitleIcon"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/icon_go_back"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="96dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/text_verify_code_tips"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_avatar"
+        app:layout_constraintStart_toStartOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="@color/black_0"
+        app:layout_constraintEnd_toEndOf="@id/iv_avatar"
+        app:layout_constraintStart_toStartOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:paddingStart="7.5dp"
+        android:paddingEnd="7.5dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:adjustViewBounds="true"
+        android:layout_marginStart="7dp"
+        app:layout_constraintStart_toEndOf="@id/tv_name"
+        app:layout_constraintTop_toTopOf="@id/tv_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_name"
+        android:src="@mipmap/icon_update_userinfo_authentication"/>
+
+    <ImageView
+        android:id="@+id/iv_update_phone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:adjustViewBounds="true"
+        android:padding="9dp"
+        app:layout_constraintStart_toEndOf="@id/tv_phone"
+        app:layout_constraintTop_toTopOf="@id/tv_phone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_phone"
+        android:src="@mipmap/icon_update_userinfo_account"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="267dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:id="@+id/user_info_nick_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/update_user_title_nick_name"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:id="@+id/user_info_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:title="@string/update_user_title_account"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <com.hhsj.ilive.widget.CustomMyInfoItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

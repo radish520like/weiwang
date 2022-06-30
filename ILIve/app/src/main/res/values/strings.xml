@@ -44,8 +44,8 @@
     <string name="license_server_protocol">微网用户协议</string>
     <string name="license_server_content">欢迎你使用ILIVE软件及服务！\n\n
 为使用ILIVE软件（以下简称“本软件”）及服务，你应当阅读并遵守《ILIVE软件许可及服务协议》（以下简称“本协议”），以及《腾讯服务协议》 。请你务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，以及开通或使用某项服务的单独协议，并选择接受或不接受。限制、免责条款可能以加粗等形式提示你注意。\n\n
-除非你已阅读并接受本协议所有条款，否则你无权下载、安装或使用本软件及相关服务。你的下载、安装、使用、获取微信帐号、登录等行为即视为你已阅读并同意上述协议的约束。\n\n
-如果你未满18周岁，请在法定监护人的陪同下阅读本协议及上述其他协议，并特别注意未成年人使用条款。特别地，如果你是未满14周岁的儿童，则在完成帐号注册前，还应请你的监护人仔细阅读腾讯公司专门制定的《儿童隐私保护声明》。只有在取得监护人对《儿童隐私保护声明》的同意后，未满14周岁的儿童方可使用微信服务。\n\n
+除非你已阅读并接受本协议所有条款，否则你无权下载、安装或使用本软件及相关服务。你的下载、安装、使用、获取微信账号、登录等行为即视为你已阅读并同意上述协议的约束。\n\n
+如果你未满18周岁，请在法定监护人的陪同下阅读本协议及上述其他协议，并特别注意未成年人使用条款。特别地，如果你是未满14周岁的儿童，则在完成账号注册前，还应请你的监护人仔细阅读腾讯公司专门制定的《儿童隐私保护声明》。只有在取得监护人对《儿童隐私保护声明》的同意后，未满14周岁的儿童方可使用微信服务。\n\n
 一、协议的范围\n\n
 1.1 协议适用主体范围\n\n
 本协议是你与腾讯之间关于你下载、安装、使用、复制本
@@ -59,6 +59,10 @@
     <string name="tab_tag_my">我的</string>
 
     <string name="main_title_setting">设置</string>
+    <!--  setting  -->
+    <string name="setting_item_title_account_safe">帐户安全</string>
+    <string name="setting_item_title_phone">手机号</string>
+    <string name="setting_item_title_logout">注销账号</string>
 
     <!--  user info  -->
     <string name="user_info_item_nick_name">昵称</string>
@@ -70,5 +74,29 @@
     <!--  toast text  -->
     <string name="toast_telephone_error">请输入合法的手机号</string>
     <string name="toast_read_server_clause">请阅读并同意服务条款</string>
+
+    <!--  update user title  -->
+    <string name="update_user_title_nick_name">昵称</string>
+    <string name="update_user_title_account">账号</string>
+    <string name="update_user_info_nick_name_title">微网昵称修改</string>
+    <string name="update_user_info_nick_name_hint">请输入昵称</string>
+    <string name="update_user_info_nick_name_limit_tips">昵称修改每个认证用户每年可修改2次</string>
+    <string name="update_user_info_nick_name_limit">您今年还可修改%d次</string>
+    <string name="update_user_info_not_modifiable">不可修改</string>
+    <string name="update_user_info_commit">确认修改</string>
+
+    <string name="update_user_info_account_title">微网账号修改</string>
+    <string name="update_user_info_account_hint">请输入账号</string>
+
+    <string name="update_user_info_phone_title">更换绑定手机号</string>
+    <string name="update_user_info_phone_hint">请输入手机号</string>
+    <string name="update_user_info_phone_tips_1">手机号为微网账户登录有效验证方式之一</string>
+    <string name="update_user_info_phone_tips_2">更换后请牢记</string>
+    <string name="update_user_info_phone_commit">确认更换电话号码</string>
+
+    <string name="update_user_info_phone_confirm_title">更换绑定手机号</string>
+    <string name="update_user_info_phone_confirm_tips">请您仔细核对并牢记更换后手机号码并再次确认</string>
+    <string name="update_user_info_phone_confirm">确认更换</string>
+
 
 </resources>

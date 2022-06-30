@@ -1,4 +1,4 @@
-package com.hhsj.ilive.ui
+package com.hhsj.ilive
 
 import android.content.Context
 import android.view.View

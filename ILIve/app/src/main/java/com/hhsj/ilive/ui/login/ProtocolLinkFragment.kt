@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
+import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
 
 /**
  * 协议界面

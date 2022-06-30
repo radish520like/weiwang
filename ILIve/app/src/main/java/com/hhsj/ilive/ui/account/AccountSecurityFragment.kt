@@ -8,9 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.navigation.findNavController
+import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
 import com.hhsj.ilive.widget.CustomEnableTextView
 
 /**

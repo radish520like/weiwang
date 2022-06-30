@@ -9,15 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
-import com.hhsj.ilive.AccountSecurityActivity
-import com.hhsj.ilive.BaseActivity
-import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
+import com.hhsj.ilive.*
 import com.hhsj.ilive.widget.CustomEnableTextView
 
 /**
@@ -77,7 +71,7 @@ class LoginForLogOutFragment : BaseFragment() {
     private fun initListener(){
         mLoginButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putBoolean("fromLogOut",true)
+            bundle.putString(VERIFY_CODE_FROM_KEY,VERIFY_CODE_FROM_LOGOUT)
             it.findNavController().navigate(R.id.action_loginForLogOutFragment_to_verifyCodeFragment,bundle)
         }
         mHelperImageView.setOnClickListener {

@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityOptionsCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.hhsj.ilive.MainActivity
+import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
-import com.hhsj.ilive.ui.BaseFragment
 import com.hhsj.ilive.ui.main.my.UserInfoActivity
+import com.hhsj.ilive.ui.main.my.UserQrCodeCardActivity
 import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.widget.CustomMyInfoItemView
 
@@ -29,6 +30,7 @@ class MyFragment : BaseFragment() {
     private lateinit var mAvatarImageView: ImageView
     private lateinit var mUserNameTextView: TextView
     private lateinit var mPhoneTextView: TextView
+    private lateinit var mQrCodeImageView: ImageView
     private lateinit var mActivity: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +47,7 @@ class MyFragment : BaseFragment() {
         mCustomMyInfoItemView = view.findViewById(R.id.info_item_setting)
         mUserNameTextView = view.findViewById(R.id.tv_name)
         mPhoneTextView = view.findViewById(R.id.tv_phone)
+        mQrCodeImageView = view.findViewById(R.id.iv_qr_code)
 
         initListener()
     }
@@ -70,8 +73,27 @@ class MyFragment : BaseFragment() {
 
     private fun initListener() {
         mCustomMyInfoItemView.setOnClickListener {
-            val intent = Intent(requireContext(), UserInfoActivity::class.java)
-            startActivity(intent)
+            startUserInfoActivity(false)
         }
+
+        mInfoRootConstraintLayout.setOnClickListener {
+            startUserInfoActivity(true)
+        }
+
+        mQrCodeImageView.setOnClickListener {
+            val intent = Intent(requireContext(),UserQrCodeCardActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                mActivity,mQrCodeImageView,"ImageQrCode"
+            )
+            startActivity(intent,options.toBundle())
+        }
+    }
+
+    private fun startUserInfoActivity(forUpdate: Boolean){
+        val intent = Intent(requireContext(), UserInfoActivity::class.java)
+        if(forUpdate){
+            intent.putExtra("forUpdate",true);
+        }
+        startActivity(intent)
     }
 }

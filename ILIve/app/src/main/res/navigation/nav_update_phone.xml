@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_update_phone"
+    app:startDestination="@id/updatePhoneFirstFragment">
+
+    <fragment android:id="@+id/updatePhoneFirstFragment"
+        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneForVerifyCodeFragment"
+        android:label="updatePhoneFirstFragment">
+        <action
+            android:id="@+id/action_UpdatePhoneForVerifyCodeFragment_to_verifyCodeFragment"
+            app:destination="@id/verifyCodeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verifyCodeFragment"
+        android:name="com.hhsj.ilive.ui.login.VerifyCodeFragment"
+        android:label="VerifyCodeFragment" >
+        <action
+            android:id="@+id/action_verifyCodeFragment_to_updatePhoneFragment"
+            app:destination="@id/updatePhoneFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updatePhoneFragment"
+        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneFragment"
+        android:label="UpdatePhoneFragment" >
+        <action
+            android:id="@+id/action_updatePhoneFragment_to_verifyCodeFragment_newPhone"
+            app:destination="@id/verifyCodeFragment_newPhone" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verifyCodeFragment_newPhone"
+        android:name="com.hhsj.ilive.ui.login.VerifyCodeFragment"
+        android:label="VerifyCodeFragment" >
+
+        <action
+            android:id="@+id/action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment"
+            app:destination="@id/updatePhoneConfirmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePhoneConfirmFragment"
+        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneConfirmFragment"
+        android:label="UpdatePhoneConfirmFragment" />
+</navigation>

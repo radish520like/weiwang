@@ -11,6 +11,7 @@
     <color name="gray_100">#A2A2A2</color>
     <color name="blue_100">#2A82E4</color>
 
+    <color name="update_user_info_hint">#B2B2B2</color>
     <color name="register_login_edit_hint">#929297</color>
     <color name="app_title_color">#020207</color>
     <color name="root_background">#F2F2F2</color>
@@ -18,7 +19,9 @@
     <color name="round_rect_button_enable">#00CCBB</color>
 
     <color name="red">#D43030</color>
-    
+    <color name="circle_red">#FF5733</color>
+    <color name="circle_green">#43CF7C</color>
+
     <color name="login_register_text_color">#2A82E4</color>
     <color name="text_protocol_tips">#A2A2A2</color>
     <color name="text_verify_code_tips">#121217</color>
