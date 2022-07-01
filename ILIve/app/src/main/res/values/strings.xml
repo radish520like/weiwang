@@ -98,5 +98,6 @@
     <string name="update_user_info_phone_confirm_tips">请您仔细核对并牢记更换后手机号码并再次确认</string>
     <string name="update_user_info_phone_confirm">确认更换</string>
 
+    <string name="qr_code_card_qr_code_tips">扫描上边二维码可发起会话聊天</string>
 
 </resources>

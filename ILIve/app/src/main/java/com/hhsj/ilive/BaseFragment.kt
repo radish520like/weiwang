@@ -2,6 +2,7 @@ package com.hhsj.ilive
 
 import android.content.Context
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +27,7 @@ open class BaseFragment : Fragment() {
         mScreenHeightPixels = displayMetrics.heightPixels
     }
 
-    fun goBack(nacController: NavController){
+    fun goBack(nacController: NavController) {
         nacController.popBackStack()
     }
 
@@ -39,12 +40,12 @@ open class BaseFragment : Fragment() {
         )
     }
 
-    fun hideSoftWithEditText(editText: EditText){
+    fun hideSoftWithEditText(editText: EditText) {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
-    fun showSoft(editText: EditText){
+    fun showSoft(editText: EditText) {
         val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editText, InputMethodManager.RESULT_SHOWN)
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
@@ -79,5 +80,42 @@ open class BaseFragment : Fragment() {
             //4.apply 应用
             applyTo(rootView)
         }
+    }
+
+    fun margin(
+        targetView: View,
+        marginStart: Float = 0.0f,
+        marginTop: Float = 0.0f,
+        marginEnd: Float = 0.0f,
+        marginBottom: Float = 0.0f
+    ) {
+        val layoutParams = targetView.layoutParams as ViewGroup.MarginLayoutParams
+        layoutParams.leftMargin = (marginStart / 100.0f * mScreenWidthPixels).toInt()
+        layoutParams.topMargin = (marginTop / 100.0f * mScreenWidthPixels).toInt()
+        layoutParams.rightMargin = (marginEnd / 100.0f * mScreenWidthPixels).toInt()
+        layoutParams.bottomMargin = (marginBottom / 100.0f * mScreenWidthPixels).toInt()
+        targetView.layoutParams = layoutParams
+    }
+
+    fun calculateViewHeight(targetView: View,height: Float){
+        val layoutParams = targetView.layoutParams
+        layoutParams.height = (height / 100.0f * mScreenWidthPixels).toInt()
+        targetView.layoutParams = layoutParams
+        targetView.invalidate()
+    }
+
+    fun calculateViewWidth(targetView: View,width: Float){
+        val layoutParams = targetView.layoutParams
+        layoutParams.width = (width / 100.0f * mScreenWidthPixels).toInt()
+        targetView.layoutParams = layoutParams
+        targetView.invalidate()
+    }
+
+    fun calculateView(targetView: View,width: Float,height: Float){
+        val layoutParams = targetView.layoutParams
+        layoutParams.width = (width / 100.0f * mScreenWidthPixels).toInt()
+        layoutParams.height = (height / 100.0f * mScreenWidthPixels).toInt()
+        targetView.layoutParams = layoutParams
+        targetView.invalidate()
     }
 }

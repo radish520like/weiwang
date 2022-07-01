@@ -103,7 +103,7 @@ class VerifyCodeFragment : BaseFragment() {
         mFromLogKey = arguments?.getString(VERIFY_CODE_FROM_KEY) ?: ""
         if (mFromLogKey.isEmpty() || mFromLogKey == VERIFY_CODE_FROM_LOGOUT) {
             //登出切换账号时获取验证码
-//            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
+            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
             //校验手机号
             //TODO
