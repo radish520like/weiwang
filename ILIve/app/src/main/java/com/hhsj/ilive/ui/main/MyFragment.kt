@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.widget.NestedScrollView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -25,6 +27,7 @@ import com.hhsj.ilive.widget.CustomMyInfoItemView
  */
 class MyFragment : BaseFragment() {
 
+    private lateinit var mRootView: ConstraintLayout
     private lateinit var mInfoRootConstraintLayout: ConstraintLayout
     private lateinit var mCustomMyInfoItemView: CustomMyInfoItemView
     private lateinit var mAvatarImageView: ImageView
@@ -32,6 +35,7 @@ class MyFragment : BaseFragment() {
     private lateinit var mPhoneTextView: TextView
     private lateinit var mQrCodeImageView: ImageView
     private lateinit var mSettingImageView: ImageView
+    private lateinit var mScrollView: NestedScrollView
     private lateinit var mActivity: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +47,7 @@ class MyFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mRootView = view.findViewById(R.id.root_view)
         mInfoRootConstraintLayout = view.findViewById(R.id.info_root)
         mAvatarImageView = view.findViewById(R.id.iv_avatar)
         mCustomMyInfoItemView = view.findViewById(R.id.info_item_setting)
@@ -50,7 +55,9 @@ class MyFragment : BaseFragment() {
         mPhoneTextView = view.findViewById(R.id.tv_phone)
         mQrCodeImageView = view.findViewById(R.id.iv_qr_code)
         mSettingImageView = view.findViewById(R.id.iv_setting)
+        mScrollView = view.findViewById(R.id.scroll_view)
 
+        initMargin()
         initListener()
     }
 
@@ -71,6 +78,9 @@ class MyFragment : BaseFragment() {
 
         mUserNameTextView.text = nickName
         mPhoneTextView.text = phone
+    }
+
+    private fun initMargin(){
     }
 
     private fun initListener() {

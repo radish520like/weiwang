@@ -63,7 +63,6 @@ class LoginForLogOutFragment : BaseFragment() {
     }
 
     private fun initMargin(){
-        margin(mRootView,mAvatarImageView, ConstraintSet.TOP,mRootView,ConstraintSet.TOP,40f)
         margin(mRootView,mLineView, ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,44.1f)
         margin(mRootView,mSwitchAccountTextView, ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,33.6f)
     }
