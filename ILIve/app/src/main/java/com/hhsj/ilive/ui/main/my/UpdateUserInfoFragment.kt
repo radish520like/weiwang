@@ -1,7 +1,6 @@
 package com.hhsj.ilive.ui.main.my
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,23 +9,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.main.update.UpdatePhoneActivity
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomMyInfoItemView
-import org.devio.takephoto.app.TakePhotoFragment
-import org.devio.takephoto.model.CropOptions
-import org.devio.takephoto.model.TResult
-import java.io.File
-
 /**
  * 用户信息-修改
  * @author YuHan
  */
-private const val CROP_PHOTO: Int = 1
-private const val CHOOSE_PHOTO = 2
 
-class UpdateUserInfoFragment : TakePhotoFragment() {
+class UpdateUserInfoFragment : BaseFragment() {
 
     private lateinit var mBackImageView: ImageView
     private lateinit var mAvatarImageView: ImageView
@@ -97,41 +90,8 @@ class UpdateUserInfoFragment : TakePhotoFragment() {
         }
 
         mAvatarImageView.setOnClickListener {
-//            val file = File(
-//                Environment.getExternalStorageDirectory(),
-//                "/temp/" + System.currentTimeMillis() + ".jpg"
-//            )
-//            if (!file.parentFile.exists()) {
-//                file.parentFile.mkdirs()
-//            }
-            val file = File(mActivity.cacheDir.absoluteFile,"/avatar/${System.currentTimeMillis()}.jpg")
-            if(!file.parentFile.exists()){
-                file.parentFile.mkdirs()
-            }
-            println("abc : file = ${file.absolutePath}")
-            val imageUri = Uri.fromFile(file)
-            val builder: CropOptions.Builder = CropOptions.Builder()
-            builder.setWithOwnCrop(false)
-            val cropOptions = builder.create()
-            cropOptions.aspectX = 9
-            cropOptions.aspectY = 10
-            takePhoto.onPickFromGalleryWithCrop(imageUri, cropOptions)
+            it.findNavController().navigate(R.id.action_userInfoForUpdateFragment_to_updateAvatarFragment)
         }
-    }
-
-    override fun takeSuccess(result: TResult?) {
-        super.takeSuccess(result)
-        println("abc : 获取照片成功")
-    }
-
-    override fun takeFail(result: TResult?, msg: String?) {
-        super.takeFail(result, msg)
-        println("abc : 获取照片失败")
-    }
-
-    override fun takeCancel() {
-        super.takeCancel()
-        println("abc : 获取照片取消")
     }
 
     private fun jumpToUpdatePhoneActivity(){

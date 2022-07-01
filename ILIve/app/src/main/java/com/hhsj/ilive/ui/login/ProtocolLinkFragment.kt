@@ -17,7 +17,16 @@ import com.hhsj.ilive.R
  */
 class ProtocolLinkFragment: BaseFragment() {
 
+    companion object{
+        @JvmStatic
+        val TITLE = "title"
+        @JvmStatic
+        val CONTENT = "content"
+    }
+
     private lateinit var mCloseImageView: ImageView
+    private lateinit var mTitleTextView: TextView
+    private lateinit var mContentTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +41,20 @@ class ProtocolLinkFragment: BaseFragment() {
         var mContentTextView: TextView = view.findViewById(R.id.tv_content)
         mContentTextView.movementMethod = ScrollingMovementMethod.getInstance()
 
+        mTitleTextView = view.findViewById(R.id.tv_title)
+        mContentTextView = view.findViewById(R.id.tv_content)
         mCloseImageView = view.findViewById(R.id.iv_close)
 
         initListener()
+
+        val titleResourceId = arguments?.getInt(TITLE,-1) ?: -1
+        val contentResourceId = arguments?.getInt(CONTENT,-1) ?: -1
+        if(titleResourceId != -1){
+            mTitleTextView.text = resources.getString(titleResourceId)
+        }
+        if(contentResourceId != -1){
+            mContentTextView.text = resources.getString(contentResourceId)
+        }
     }
 
     private fun initListener(){

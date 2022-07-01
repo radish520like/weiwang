@@ -100,4 +100,15 @@
 
     <string name="qr_code_card_qr_code_tips">扫描上边二维码可发起会话聊天</string>
 
+    <string name="update_user_info_update_avatar_title">用户头像修改</string>
+    <string name="update_user_info_update_avatar_tips">头像不允许涉及政治敏感色情，谨守社交礼仪共建和谐</string>
+    <string name="update_user_info_update_avatar_protocol_text">《微网用户头像文明使用规范》</string>
+    <string name="update_user_info_update_avatar_protocol_title">微网用户头像文明使用规范</string>
+    <string name="update_user_info_update_avatar_protocol_content">欢迎你使用微网软件及服务！</string>
+    <string name="update_user_info_update_avatar_agree">同意并选择</string>
+    
+    <string name="update_user_info_update_avatar_text">更换新头像</string>
+    <string name="update_user_info_save_text">保存到相册</string>
+    <string name="update_user_info_back_text">返回上一页</string>
+
 </resources>

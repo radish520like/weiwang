@@ -14,11 +14,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iv_help"
+            style="@style/TitleIcon"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/icon_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/iv_avatar"
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="98dp"
             android:src="@mipmap/icon_avatar_rectangle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -79,9 +87,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="62dp"
         android:layout_marginBottom="50dp"
         android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,7 +114,6 @@
                 android:id="@+id/info_item_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="@string/main_title_setting"
                 app:showTitleIcon="true"
                 android:layout_marginTop="10dp" />
 

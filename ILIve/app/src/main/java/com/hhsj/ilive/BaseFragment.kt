@@ -9,13 +9,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import org.devio.takephoto.app.TakePhotoFragment
 
 const val VERIFY_CODE_FROM_KEY = "verify_code_from_key"
 const val VERIFY_CODE_FROM_UPDATE_PHONE_NEW = "verify_code_from_update_phone_new"
 const val VERIFY_CODE_FROM_UPDATE_PHONE_OLD = "verify_code_from_update_phone_old"
 const val VERIFY_CODE_FROM_LOGOUT = "verify_code_from_logout"
 
-open class BaseFragment : Fragment() {
+open class BaseFragment : TakePhotoFragment() {
 
     private var mScreenWidthPixels: Int = 0
     private var mScreenHeightPixels: Int = 0

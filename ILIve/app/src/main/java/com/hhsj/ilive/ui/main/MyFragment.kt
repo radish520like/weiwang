@@ -31,6 +31,7 @@ class MyFragment : BaseFragment() {
     private lateinit var mUserNameTextView: TextView
     private lateinit var mPhoneTextView: TextView
     private lateinit var mQrCodeImageView: ImageView
+    private lateinit var mSettingImageView: ImageView
     private lateinit var mActivity: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +49,7 @@ class MyFragment : BaseFragment() {
         mUserNameTextView = view.findViewById(R.id.tv_name)
         mPhoneTextView = view.findViewById(R.id.tv_phone)
         mQrCodeImageView = view.findViewById(R.id.iv_qr_code)
+        mSettingImageView = view.findViewById(R.id.iv_setting)
 
         initListener()
     }
@@ -72,7 +74,7 @@ class MyFragment : BaseFragment() {
     }
 
     private fun initListener() {
-        mCustomMyInfoItemView.setOnClickListener {
+        mSettingImageView.setOnClickListener {
             startUserInfoActivity(false)
         }
 

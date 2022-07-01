@@ -103,7 +103,8 @@ class VerifyCodeFragment : BaseFragment() {
         mFromLogKey = arguments?.getString(VERIFY_CODE_FROM_KEY) ?: ""
         if (mFromLogKey.isEmpty() || mFromLogKey == VERIFY_CODE_FROM_LOGOUT) {
             //登出切换账号时获取验证码
-            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },{ LogUtils.e(it)})
+            mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },
+                { LogUtils.e(it) })
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
             //校验手机号
             //TODO
@@ -116,12 +117,17 @@ class VerifyCodeFragment : BaseFragment() {
             mVerifyCodeTip.text =
                 getString(
                     R.string.verify_code_tips,
-                    mUserInfoViewModelProvider.getPhone().replaceRange(3..6, "****")
+                    mUserInfoViewModelProvider.getPhone()
                 )
         } else {
             mVerifyCodeTip.text =
                 getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
         }
+
+        //getString(
+        //                    R.string.verify_code_tips,
+        //                    mUserInfoViewModelProvider.getPhone().replaceRange(3..6, "****")
+        //                )
 
         mCountDownTimer.start()
     }
@@ -131,10 +137,12 @@ class VerifyCodeFragment : BaseFragment() {
         mVerifyCode.setOnCompletionListener {
             if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
                 //TODO
-                mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
+                mVerifyCode.findNavController()
+                    .navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
             } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
                 //TODO
-                mVerifyCode.findNavController().navigate(R.id.action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment)
+                mVerifyCode.findNavController()
+                    .navigate(R.id.action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment)
             } else {
                 mUserInfoViewModelProvider.registerOrLogin(
                     mUserInfoViewModelProvider.getPhone(),

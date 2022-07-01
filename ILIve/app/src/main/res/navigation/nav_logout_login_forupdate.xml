@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_userInfoForUpdateFragment_to_updateAccountFragment"
             app:destination="@id/updateAccountFragment" />
+        <action
+            android:id="@+id/action_userInfoForUpdateFragment_to_updateAvatarFragment"
+            app:destination="@id/updateAvatarFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateNickNameFragment"
@@ -24,11 +27,26 @@
         android:id="@+id/updateAccountFragment"
         android:name="com.hhsj.ilive.ui.main.my.UpdateAccountFragment"
         android:label="UpdateAccountFragment" />
+    <fragment
+        android:id="@+id/updateAvatarFragment"
+        android:name="com.hhsj.ilive.ui.main.my.UpdateAvatarFragment"
+        android:label="UpdateAvatarFragment" >
+        <action
+            android:id="@+id/action_updateAvatarFragment_to_confirmUpdateAvatarFragment"
+            app:destination="@id/confirmUpdateAvatarFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/updatePhoneConfirmFragment"
-        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneConfirmFragment"
-        android:label="UpdatePhoneConfirmFragment" />
+        android:id="@+id/confirmUpdateAvatarFragment"
+        android:name="com.hhsj.ilive.ui.main.my.ConfirmUpdateAvatarFragment"
+        android:label="ConfirmUpdateAvatarFragment">
+        <action
+            android:id="@+id/action_confirmUpdateAvatarFragment_to_UpdateAvatarProtocolLinkFragment"
+            app:destination="@id/UpdateAvatarProtocolLinkFragment" />
+    </fragment>
 
-
+    <fragment
+        android:id="@+id/UpdateAvatarProtocolLinkFragment"
+        android:name="com.hhsj.ilive.ui.login.ProtocolLinkFragment"
+        android:label="UpdateAvatarProtocolLinkFragment"/>
 </navigation>

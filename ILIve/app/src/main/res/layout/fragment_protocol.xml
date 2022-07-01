@@ -18,13 +18,14 @@
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_title"
-        android:layout_width="212dp"
+        android:layout_width="wrap_content"
         android:layout_height="43dp"
         android:layout_marginTop="45dp"
         android:gravity="center"
+        android:maxLines="1"
         android:text="@string/license_server_protocol"
         android:textColor="@color/text_verify_code_tips"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:textFont="Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
