@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/confirmUpdateAvatarFragment"
-        android:name="com.hhsj.ilive.ui.main.my.ConfirmUpdateAvatarFragment"
+        android:name="com.hhsj.ilive.ui.main.ConfirmFragment"
         android:label="ConfirmUpdateAvatarFragment">
         <action
             android:id="@+id/action_confirmUpdateAvatarFragment_to_UpdateAvatarProtocolLinkFragment"

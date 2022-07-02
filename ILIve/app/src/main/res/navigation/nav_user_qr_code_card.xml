@@ -7,5 +7,14 @@
     <fragment
         android:id="@+id/QRCodeCardFragment"
         android:name="com.hhsj.ilive.ui.main.my.QRCodeCardFragment"
-        android:label="QRCodeCardFragment" />
+        android:label="QRCodeCardFragment" >
+        <action
+            android:id="@+id/action_QRCodeCardFragment_to_RealNameAuthorizationFragment"
+            app:destination="@id/RealNameAuthorizationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RealNameAuthorizationFragment"
+        android:name="com.hhsj.ilive.ui.main.ConfirmFragment"
+        android:label="RealNameAuthorizationFragment"/>
 </navigation>

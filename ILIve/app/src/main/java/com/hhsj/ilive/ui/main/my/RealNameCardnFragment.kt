@@ -28,10 +28,10 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 
 /**
- * 二维码名片
+ * 实名认证 Card 页面
  * @author YuHan
  */
-class QRCodeCardFragment : BaseFragment() {
+class RealNameCardnFragment : BaseFragment() {
 
     private lateinit var mRootView: FrameLayout
     private lateinit var mRootCardView: CardView
@@ -108,11 +108,6 @@ class QRCodeCardFragment : BaseFragment() {
             )
         ).into(mAvatarImageView)
 
-        Glide.with(requireContext()).load(avatar).transform(BlurTransformation(25)).apply(
-            RequestOptions.bitmapTransform(
-                RoundedCornersTransformation(7, 1, RoundedCornersTransformation.CornerType.TOP)
-            )
-        ).into(mBackgroundImageView)
         mNickNameTextView.text = nickName
         mPhoneTextView.text = phone
 
@@ -260,7 +255,7 @@ class QRCodeCardFragment : BaseFragment() {
 
     private fun initSize() {
         calculateViewHeight(mTopInfoRootView, 51.3f)
-        calculateViewHeight(mBackgroundImageView, 51.3f)
+        calculateViewHeight(mBackgroundImageView, 49f)
         calculateViewHeight(mRootCardView, 139.7f)
     }
 

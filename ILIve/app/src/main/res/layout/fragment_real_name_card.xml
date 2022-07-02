@@ -15,9 +15,10 @@
         app:cardPreventCornerOverlap="true"
         app:cardCornerRadius="7dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:background="@android:color/transparent">
 
             <!--  上半部分  -->
@@ -89,55 +90,9 @@
 
             <!--  下半部分  -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/bottom_qr_code_root"
-                android:layout_below="@id/top_info_root"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/view_bg"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <ImageView
-                    android:id="@+id/iv_qr_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:transitionName="ImageQrCode"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <com.hhsj.ilive.widget.CustomFontTextView
-                    android:id="@+id/qr_code_tips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11sp"
-                    app:textFont="Light"
-                    android:text="@string/qr_code_card_qr_code_tips"
-                    android:textColor="@color/register_login_edit_hint"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_qr_code"/>
-
-                <ImageView
-                    android:id="@+id/iv_refresh"
-                    android:layout_width="25dp"
-                    android:layout_height="21dp"
-                    android:background="@color/blue_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bottom_real_name_root"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:layout_below="@id/top_info_root">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/iv_logo"
@@ -196,7 +151,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

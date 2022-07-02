@@ -98,6 +98,9 @@
     <string name="update_user_info_phone_confirm_tips">请您仔细核对并牢记更换后手机号码并再次确认</string>
     <string name="update_user_info_phone_confirm">确认更换</string>
 
+    <!--  qr code card  -->
+    <string name="qr_code_card_real_name_authentication_tips">实名认证添加好友</string>
+    <string name="qr_code_card_real_name_tips">用户需准备有效期内二代身份证</string>
     <string name="qr_code_card_qr_code_tips">扫描上边二维码可发起会话聊天</string>
 
     <string name="update_user_info_update_avatar_title">用户头像修改</string>
@@ -110,5 +113,13 @@
     <string name="update_user_info_update_avatar_text">更换新头像</string>
     <string name="update_user_info_save_text">保存到相册</string>
     <string name="update_user_info_back_text">返回上一页</string>
+
+    <!--  real name authentication  -->
+    <string name="real_name_authentication_start">开始认证</string>
+    <string name="real_name_authentication_title">用户实名认证</string>
+    <string name="real_name_authentication_explain">微网用户凭身份证仅可完成一个账户实名认证</string>
+    <string name="real_name_authentication_protocol">《微网用户实名认证服务协议》</string>
+    <string name="real_name_authentication_agree">同意并认证</string>
+
 
 </resources>

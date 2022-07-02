@@ -12,7 +12,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/update_user_info_update_avatar_title"
+        android:text="@string/update_user_info_phone_confirm_title"
         android:textColor="@color/app_title_color"
         android:textSize="27sp"
         app:textFont="Normal"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         app:textFont="Light"
-        android:text="@string/update_user_info_update_avatar_tips"
+        android:text="@string/update_user_info_phone_confirm_tips"
         android:textColor="@color/register_login_edit_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +53,15 @@
         android:orientation="vertical">
 
         <com.hhsj.ilive.widget.CustomFontTextView
-            android:id="@+id/tv_protocol"
+            android:id="@+id/tv_tips"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/view_divider"
-            android:text="@string/update_user_info_update_avatar_protocol_text"
+            app:textFont="Regular"
             android:textColor="@color/round_rect_button_enable"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <View
             android:id="@+id/view_divider"
@@ -72,14 +72,15 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <com.hhsj.ilive.widget.CustomFontTextView
-            android:id="@+id/tv_agree"
+            android:id="@+id/tv_confirm"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:gravity="center"
             android:background="@color/white"
+            app:textFont="Regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/bottom_view"
-            android:text="@string/user_info_logout_dialog_exit"
+            android:text="@string/update_user_info_phone_confirm"
             android:textColor="@color/round_rect_button_enable"
             android:textSize="16sp" />
 
@@ -98,6 +99,7 @@
             android:gravity="center"
             android:background="@color/white"
             android:text="@string/user_info_logout_dialog_cancel"
+            app:textFont="Normal"
             android:textColor="@color/black_100"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

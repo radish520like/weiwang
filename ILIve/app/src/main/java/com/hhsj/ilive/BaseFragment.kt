@@ -119,4 +119,7 @@ open class BaseFragment : TakePhotoFragment() {
         targetView.layoutParams = layoutParams
         targetView.invalidate()
     }
+
+    fun getRealWidth(width: Float) = (width / 100.0f * mScreenWidthPixels).toInt()
+    fun getRealHeight(height: Float) = (height / 100.0f * mScreenWidthPixels).toInt()
 }

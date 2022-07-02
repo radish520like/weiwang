@@ -12,7 +12,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.lang.StringBuilder
 
-private const val HOST = "http://47.110.153.16:30238"
+//private const val HOST = "http://47.110.153.16:30238"
+private const val HOST = "http://219.246.116.9:88"
 
 object HttpServer {
 
