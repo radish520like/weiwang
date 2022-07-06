@@ -47,12 +47,10 @@ public class IntentUtils {
         intent.setDataAndType(targetUri, "image/*");
         intent.putExtra("crop", "true");
         if (options.getAspectX() * options.getAspectY() > 0) {
-            System.out.println("abc : aaa " + options.getAspectX() + " --- " + options.getAspectY());
             intent.putExtra("aspectX", options.getAspectX());
             intent.putExtra("aspectY", options.getAspectY());
         }
         if (options.getOutputX() * options.getOutputY() > 0) {
-            System.out.println("abc : bbb " + options.getAspectX() + " --- " + options.getAspectY());
             intent.putExtra("outputX", options.getOutputX());
             intent.putExtra("outputY", options.getOutputY());
         }

@@ -16,8 +16,8 @@
             android:id="@+id/action_userInfoForUpdateFragment_to_updateAccountFragment"
             app:destination="@id/updateAccountFragment" />
         <action
-            android:id="@+id/action_userInfoForUpdateFragment_to_updateAvatarFragment"
-            app:destination="@id/updateAvatarFragment" />
+            android:id="@+id/action_userInfoForUpdateFragment_to_confirmUpdateAvatarFragment"
+            app:destination="@id/confirmUpdateAvatarFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateNickNameFragment"
@@ -27,14 +27,6 @@
         android:id="@+id/updateAccountFragment"
         android:name="com.hhsj.ilive.ui.main.my.UpdateAccountFragment"
         android:label="UpdateAccountFragment" />
-    <fragment
-        android:id="@+id/updateAvatarFragment"
-        android:name="com.hhsj.ilive.ui.main.my.UpdateAvatarFragment"
-        android:label="UpdateAvatarFragment" >
-        <action
-            android:id="@+id/action_updateAvatarFragment_to_confirmUpdateAvatarFragment"
-            app:destination="@id/confirmUpdateAvatarFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/confirmUpdateAvatarFragment"

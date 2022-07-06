@@ -36,12 +36,10 @@ class LogoutDialogFragment: DialogFragment() {
         val mCancelTextView: TextView = view.findViewById(R.id.tv_cancel)
 
         mCancelTextView.setOnClickListener {
-            println("abc : aaaaa")
             mCancelListener?.invoke()
         }
 
         mLogoutTextView.setOnClickListener {
-            println("abc : bbbbb")
             mOnLogOutListener?.invoke()
         }
     }

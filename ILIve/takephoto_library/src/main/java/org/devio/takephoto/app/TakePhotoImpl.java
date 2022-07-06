@@ -82,7 +82,6 @@ public class TakePhotoImpl implements TakePhoto {
     }
 
     public TakePhotoImpl(Fragment fragment, TakeResultListener listener) {
-        System.out.println("abc : createTakePhotoImpl ");
         contextWrap = TContextWrap.of(fragment);
         this.listener = listener;
     }
@@ -115,8 +114,6 @@ public class TakePhotoImpl implements TakePhoto {
             case TConstant.RC_PICK_PICTURE_FROM_GALLERY_CROP:
                 if (resultCode == Activity.RESULT_OK && data != null) {//从相册选择照片并裁剪
                     try {
-                        //TODO 这里修改 cropOptions
-                        System.out.println("abc : cropOptions " + this.hashCode() + " --- " + cropOptions);
                         onCrop(data.getData(), outPutUri, cropOptions);
                     } catch (TException e) {
                         takeResult(TResult.of(TImage.of(outPutUri, fromType)), e.getDetailMessage());

@@ -6,13 +6,13 @@ plugins {
 
 
 android {
-    compileSdk 31
+    compileSdk 28
 
     defaultConfig {
         applicationId "com.hhsj.ilive"
 //        minSdk 19
         minSdk 21
-        targetSdk 31
+        targetSdk 28
         versionCode 1
         versionName "1.0"
 
@@ -93,7 +93,7 @@ dependencies {
     //permissionX
     implementation 'com.guolindev.permissionx:permissionx:1.6.4'
 
-//    implementation 'com.jph.takephoto:takephoto_library:4.0.3'
+    implementation project(':OSS_library')
     implementation project(':takephoto_library')
 
     //dokit

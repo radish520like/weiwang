@@ -1,5 +1,6 @@
 package com.hhsj.ilive.ui.main.my
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import androidx.navigation.findNavController
 import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
+import com.hhsj.ilive.ui.login.LoginActivity
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomMyInfoItemView
@@ -58,7 +60,11 @@ class SettingFragment : BaseFragment() {
         }
 
         mSwitchAccount.setOnClickListener {
-            //TODO
+            mUserInfoViewModelProvider.logout(success = {
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+            },failure = {
+            })
         }
 
         mAccountSafeInfoItemView.setOnClickListener {

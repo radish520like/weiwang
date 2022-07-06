@@ -1,5 +1,7 @@
 package com.hhsj.ilive.ui.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,17 @@ import androidx.navigation.findNavController
 import com.hhsj.ilive.BaseActivity
 import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
+import com.hhsj.ilive.ui.login.LoginActivity
+import com.hhsj.ilive.ui.login.ProtocolLinkFragment
+import com.hhsj.ilive.ui.main.avatar.UpdateAvatarActivity
+import com.hhsj.ilive.utils.FileUtils
+import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
+import com.hhsj.ilive.widget.CustomToast
+import org.devio.takephoto.compress.CompressConfig
+import org.devio.takephoto.model.CropOptions
+import org.devio.takephoto.model.TResult
+import java.io.File
 
 /**
  * 确定界面
@@ -46,9 +58,10 @@ class ConfirmFragment : BaseFragment() {
     private lateinit var mConfirmTextView: TextView
     private lateinit var mTipsTextView: TextView
     private lateinit var mCancelTextView: TextView
-    private var mFromType: ConfirmType? = null
     private lateinit var mActivity: BaseActivity
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
+
+    private var mFromType: ConfirmType? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,18 +117,74 @@ class ConfirmFragment : BaseFragment() {
         mRootView.setOnClickListener {
             hideSoft()
         }
+        mTipsTextView.setOnClickListener {
+            if(mFromType == ConfirmType.UPDATE_AVATAR){
+                val bundle = Bundle()
+                bundle.putString(ProtocolLinkFragment.TITLE,resources.getString(R.string.update_user_info_update_avatar_protocol_title))
+                bundle.putString(ProtocolLinkFragment.CONTENT,resources.getString(R.string.update_user_info_update_avatar_protocol_content))
+                it.findNavController().navigate(R.id.action_confirmUpdateAvatarFragment_to_UpdateAvatarProtocolLinkFragment,bundle)
+            }
+        }
         mConfirmTextView.setOnClickListener {
-//            mUserInfoViewModelProvider.logout({
-//                LogUtils.e("logout Success")
-//            }, {})
-//            val intent = Intent(activity, LoginActivity::class.java)
-//            intent.putExtra("fromLogOutPage",true)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
-//            activity?.finish()
+            when(mFromType){
+                ConfirmType.UPDATE_AVATAR -> cropPicture()
+                ConfirmType.UPDATE_PHONE -> {
+                    val phone = mTipsTextView.text.toString()
+                    mUserInfoViewModelProvider.updateUserInfo(phone = phone,success = {
+                        mActivity.finish()
+                    },failure = {
+                        CustomToast.getInstance(requireContext()).show(it ?: resources.getString(R.string.error_update_phone))
+                    })
+                }
+                else -> {
+                    mUserInfoViewModelProvider.logout({
+                        LogUtils.e("logout Success")
+                    }, {})
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    intent.putExtra("fromLogOutPage",true)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    activity?.finish()
+                }
+            }
         }
         mCancelTextView.setOnClickListener {
             it.findNavController().popBackStack()
         }
+    }
+
+    private fun cropPicture(){
+        val imageUri = FileUtils.getAvatarUri("${System.currentTimeMillis()}.jpg")
+        val builder: CropOptions.Builder = CropOptions.Builder()
+        builder.setWithOwnCrop(false)
+        val config = CompressConfig.Builder().setMaxSize(102400)
+            .setMaxPixel(mScreenWidthPixels)
+            //拍照压缩后是否保存原图
+            .enableReserveRaw(false)
+            .create()
+        val cropOptions = builder.create()
+        cropOptions.aspectX = 9
+        cropOptions.aspectY = 10
+        takePhoto.onEnableCompress(config, true)
+        takePhoto.onPickFromGalleryWithCrop(imageUri, cropOptions)
+    }
+
+    override fun takeSuccess(result: TResult?) {
+        result?.apply {
+            val image = result.image
+            val intent = Intent(requireContext(),UpdateAvatarActivity::class.java)
+            intent.putExtra(UpdateAvatarActivity.PREVIEW_AVATAR,false)
+            intent.putExtra(UpdateAvatarActivity.COMPRESS_PATH,image.compressPath)
+            intent.putExtra(UpdateAvatarActivity.ORIGINAL_PATH,image.originalPath)
+            startActivity(intent)
+        }
+    }
+
+    override fun takeFail(result: TResult?, msg: String?) {
+        LogUtils.e("获取照片失败 $msg")
+    }
+
+    override fun takeCancel() {
+        LogUtils.e("取消获取照片失败")
     }
 }

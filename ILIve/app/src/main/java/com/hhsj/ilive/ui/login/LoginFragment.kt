@@ -115,7 +115,7 @@ class LoginFragment : BaseFragment() {
 
         mLoginButton.setOnClickListener {
             val text = mTelephoneEditText.text.toString()
-            if (text.length != 11 || text[0] != '1' || text.toLongOrNull() == null) {
+            if (checkPhone(text)) {
                 CustomToast.getInstance(requireContext().applicationContext)
                     .show(resources.getString(R.string.toast_telephone_error))
             } else if(!mReadCheckBox.mIsChecked){

@@ -1,5 +1,7 @@
 package com.hhsj.ilive.ui.main.my
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,12 +22,12 @@ import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.main.ConfirmFragment
 import com.hhsj.ilive.utils.QRCodeUtils
+import com.hhsj.ilive.utils.TimeUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomFontTextView
 import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-
 
 /**
  * 二维码名片
@@ -48,11 +50,14 @@ class QRCodeCardFragment : BaseFragment() {
     private lateinit var mRefreshImageView: ImageView
     private lateinit var mRealNameRefreshImageView: ImageView
     private lateinit var mLogoImageView: ImageView
-    private lateinit var mRealNameTipsTextView: TextView
+//    private lateinit var mRealNameTipsTextView: TextView
+    private lateinit var mRealNameTipsImageView: ImageView
     private lateinit var mRealNameBottomTipsTextView: TextView
     private lateinit var mStartAuthenticationTextView: CustomEnableTextView
 
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
+    private lateinit var mOutAnimatorSet: AnimatorSet
+    private lateinit var mInAnimatorSet: AnimatorSet
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +85,8 @@ class QRCodeCardFragment : BaseFragment() {
         mRealNameRefreshImageView = view.findViewById(R.id.iv_real_name_refresh)
 
         mLogoImageView = view.findViewById(R.id.iv_logo)
-        mRealNameTipsTextView = view.findViewById(R.id.tv_real_name_tips)
+//        mRealNameTipsTextView = view.findViewById(R.id.tv_real_name_tips)
+        mRealNameTipsImageView = view.findViewById(R.id.iv_real_name_tips)
         mRealNameBottomTipsTextView = view.findViewById(R.id.tv_real_name_bottom_tips)
         mStartAuthenticationTextView = view.findViewById(R.id.tv_start_authentication)
 
@@ -88,6 +94,7 @@ class QRCodeCardFragment : BaseFragment() {
         initMargin()
         initSize()
         initListener()
+        initAnimator()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -119,8 +126,11 @@ class QRCodeCardFragment : BaseFragment() {
         val realWidth = getRealWidth(50.8f)
         val realHeight = getRealHeight(50.8f)
 
+
+        val stringBuilder = StringBuilder()
+        stringBuilder.append(phone).append("\n").append(TimeUtils.getCurrentDataFormatTime())
         val qrBitmap = QRCodeUtils.createQRCodeBitmap(
-            phone,
+            stringBuilder.toString(),
             realWidth,
             realHeight,
             "UTF-8",
@@ -216,7 +226,7 @@ class QRCodeCardFragment : BaseFragment() {
 
         margin(
             mBottomRealNameRootView,
-            mRealNameTipsTextView,
+            mRealNameTipsImageView,
             ConstraintSet.TOP,
             mLogoImageView,
             ConstraintSet.BOTTOM,
@@ -226,7 +236,7 @@ class QRCodeCardFragment : BaseFragment() {
             mBottomRealNameRootView,
             mStartAuthenticationTextView,
             ConstraintSet.TOP,
-            mRealNameTipsTextView,
+            mRealNameTipsImageView,
             ConstraintSet.BOTTOM,
             8.21f
         )
@@ -255,36 +265,51 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.BOTTOM,
             5.9f
         )
-
     }
 
     private fun initSize() {
         calculateViewHeight(mTopInfoRootView, 51.3f)
-        calculateViewHeight(mBackgroundImageView, 51.3f)
         calculateViewHeight(mRootCardView, 139.7f)
     }
 
     private fun initListener(){
         mRefreshImageView.setOnClickListener {
-            mBottomQrCodeRootView.visibility = View.GONE
-            mBottomRealNameRootView.visibility = View.VISIBLE
+//            mBottomQrCodeRootView.visibility = View.GONE
+//            mBottomRealNameRootView.visibility = View.VISIBLE
+            mOutAnimatorSet.setTarget(mBottomQrCodeRootView)
+            mInAnimatorSet.setTarget(mBottomRealNameRootView)
+            mOutAnimatorSet.start()
+            mInAnimatorSet.start()
         }
 
         mRealNameRefreshImageView.setOnClickListener {
-            mBottomQrCodeRootView.visibility = View.VISIBLE
-            mBottomRealNameRootView.visibility = View.GONE
+//            mBottomQrCodeRootView.visibility = View.VISIBLE
+//            mBottomRealNameRootView.visibility = View.GONE
+            mOutAnimatorSet.setTarget(mBottomRealNameRootView)
+            mInAnimatorSet.setTarget(mBottomQrCodeRootView)
+            mOutAnimatorSet.start()
+            mInAnimatorSet.start()
         }
 
         //开始认证
         mStartAuthenticationTextView.setOnClickListener {
             val bundle = Bundle()
             bundle.putString(ConfirmFragment.TITLE,resources.getString(R.string.real_name_authentication_title))
-            //TODO 图片
-//            bundle.putInt(ConfirmFragment.ICON,)
+            bundle.putInt(ConfirmFragment.ICON,R.mipmap.icon_id_card)
             bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.real_name_authentication_explain))
             bundle.putString(ConfirmFragment.BOTTOM_ITEM1,getString(R.string.real_name_authentication_protocol))
             bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.real_name_authentication_agree))
             it.findNavController().navigate(R.id.action_QRCodeCardFragment_to_RealNameAuthorizationFragment,bundle)
         }
+    }
+    
+    private fun initAnimator(){
+        mOutAnimatorSet = AnimatorInflater.loadAnimator(requireContext(), R.animator.anim_qr_card_out) as AnimatorSet
+        mInAnimatorSet = AnimatorInflater.loadAnimator(requireContext(), R.animator.anim_qr_card_in) as AnimatorSet
+
+        val distance = 16000
+        val scale = resources.displayMetrics.density * distance
+        mBottomQrCodeRootView.cameraDistance = scale
+        mBottomRealNameRootView.cameraDistance = scale
     }
 }

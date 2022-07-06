@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
 import com.hhsj.ilive.*
 import com.hhsj.ilive.ui.*
+import com.hhsj.ilive.ui.main.ConfirmFragment
 import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomToast
@@ -107,22 +108,13 @@ class VerifyCodeFragment : BaseFragment() {
                 { LogUtils.e(it) })
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
             //校验手机号
-            //TODO
-//            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegist("",{},{})
+            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister("",{},{})
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
-            //TODO
-//            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegist("",{},{})
+            arguments?.getString(UPDATE_NEW_PHONE)?.apply {
+                mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister(this,{},{})
+            }
         }
-        if (mFromLogKey.isNotEmpty() && mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
-            mVerifyCodeTip.text =
-                getString(
-                    R.string.verify_code_tips,
-                    mUserInfoViewModelProvider.getPhone()
-                )
-        } else {
-            mVerifyCodeTip.text =
-                getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
-        }
+        mVerifyCodeTip.text = getString(R.string.verify_code_tips,mUserInfoViewModelProvider.getPhone())
 
         //getString(
         //                    R.string.verify_code_tips,
@@ -135,32 +127,55 @@ class VerifyCodeFragment : BaseFragment() {
     private fun initListener() {
         //验证码输入完毕
         mVerifyCode.setOnCompletionListener {
-            if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
-                //TODO
-                mVerifyCode.findNavController()
-                    .navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
-            } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
-                //TODO
-                mVerifyCode.findNavController()
-                    .navigate(R.id.action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment)
-            } else {
-                mUserInfoViewModelProvider.registerOrLogin(
-                    mUserInfoViewModelProvider.getPhone(),
-                    it,
-                    {
-                        mProgress.visibility = View.GONE
-                        mVerifyCode.findNavController()
-                            .navigate(R.id.action_verifyCodeFragment_to_mainActivity)
-                        activity?.finish()
-                    },
-                    { errorMsg ->
+            when (mFromLogKey) {
+                VERIFY_CODE_FROM_UPDATE_PHONE_OLD -> {
+                    //验证旧手机号
+                    mUserInfoViewModelProvider.checkPhone("",it,success = {
                         mVerifyCode.clear()
-                        mProgress.visibility = View.GONE
-                        errorMsg?.let {
-                            CustomToast.getInstance(requireContext().applicationContext)
-                                .show(errorMsg)
-                        }
+                        mVerifyCode.findNavController()
+                            .navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
+                    },failure = {
+                        mVerifyCode.clear()
                     })
+                }
+                VERIFY_CODE_FROM_UPDATE_PHONE_NEW -> {
+                    //验证新手机号
+                    arguments?.getString(UPDATE_NEW_PHONE)?.apply {
+                        mUserInfoViewModelProvider.checkPhone(this,it,success = {
+                            mVerifyCode.clear()
+                            val bundle = Bundle()
+                            bundle.putString(ConfirmFragment.TITLE,resources.getString(R.string.update_user_info_update_avatar_title))
+                            bundle.putInt(ConfirmFragment.ICON,R.mipmap.icon_person)
+                            bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.update_user_info_update_avatar_tips))
+                            bundle.putString(ConfirmFragment.BOTTOM_ITEM1,this)
+                            bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.update_user_info_phone_confirm))
+                            bundle.putSerializable(ConfirmFragment.TYPE, ConfirmFragment.Companion.ConfirmType.UPDATE_PHONE)
+                            mVerifyCode.findNavController()
+                                .navigate(R.id.action_verifyCodeFragment_newPhone_to_confirmUpdatePhoneFragment,bundle)
+                        },failure = {
+                            mVerifyCode.clear()
+                        })
+                    }
+                }
+                else -> {
+                    mUserInfoViewModelProvider.registerOrLogin(
+                        mUserInfoViewModelProvider.getPhone(),
+                        it,
+                        {
+                            mProgress.visibility = View.GONE
+                            mVerifyCode.findNavController()
+                                .navigate(R.id.action_verifyCodeFragment_to_mainActivity)
+                            activity?.finish()
+                        },
+                        { errorMsg ->
+                            mVerifyCode.clear()
+                            mProgress.visibility = View.GONE
+                            errorMsg?.let {
+                                CustomToast.getInstance(requireContext().applicationContext)
+                                    .show(errorMsg)
+                            }
+                        })
+                }
             }
         }
 

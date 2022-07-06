@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_80"
-    tools:context=".ui.login.LoginFragment">
+    android:background="@color/white_80">
 
     <ImageView
         android:id="@+id/iv_avatar"
@@ -14,90 +12,71 @@
         android:layout_height="wrap_content"
         android:paddingStart="1dp"
         android:paddingEnd="1dp"
-        android:background="@color/red"
-        app:layout_constraintTop_toTopOf="parent"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view_bottom"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/ll_avatar"
-        android:layout_width="60dp"
-        android:layout_height="16dp"
+        android:id="@+id/bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:background="@drawable/shape_dialog_fragment_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/ll_save"
-        app:layout_constraintBottom_toTopOf="@id/view_bottom"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@color/red"/>
-
-        <com.hhsj.ilive.widget.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
-            app:textFont="Normal"
-            android:textColor="@color/register_login_edit_hint"
-            android:text="@string/update_user_info_update_avatar_text"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_save"
-        android:layout_width="60dp"
-        android:layout_height="16dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintStart_toStartOf="@id/ll_avatar"
-        app:layout_constraintEnd_toEndOf="@id/ll_back"
-        app:layout_constraintTop_toTopOf="@id/ll_avatar"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@color/red"/>
-
-        <com.hhsj.ilive.widget.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
-            app:textFont="Normal"
-            android:textColor="@color/register_login_edit_hint"
-            android:text="@string/update_user_info_update_avatar_text"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_back"
-        android:layout_width="60dp"
-        android:layout_height="16dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintStart_toStartOf="@id/ll_save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ll_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@color/red"/>
+        <com.hhsj.ilive.widget.CustomFontTextView
+            android:id="@+id/tv_update"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:gravity="center"
+            android:background="@color/white"
+            app:textFont="Regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_view"
+            android:text="@string/update_user_info_update_avatar_text"
+            android:textColor="@color/round_rect_button_enable"
+            android:textSize="17sp" />
 
         <com.hhsj.ilive.widget.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="11sp"
+            android:id="@+id/tv_save"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:gravity="center"
+            android:background="@color/white"
+            app:textFont="Regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_view"
+            android:text="@string/update_user_info_save_text"
+            android:textColor="@color/round_rect_button_enable"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/bottom_view"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_cancel"
+            android:background="@color/white_80"/>
+
+        <com.hhsj.ilive.widget.CustomFontTextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:text="@string/user_info_logout_dialog_cancel"
             app:textFont="Normal"
-            android:textColor="@color/register_login_edit_hint"
-            android:text="@string/update_user_info_update_avatar_text"/>
+            android:textColor="@color/black_100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="17sp" />
 
     </LinearLayout>
 

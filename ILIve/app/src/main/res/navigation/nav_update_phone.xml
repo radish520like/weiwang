@@ -35,13 +35,13 @@
         android:id="@+id/verifyCodeFragment_newPhone"
         android:name="com.hhsj.ilive.ui.login.VerifyCodeFragment"
         android:label="VerifyCodeFragment" >
-
         <action
-            android:id="@+id/action_verifyCodeFragment_newPhone_to_updatePhoneConfirmFragment"
-            app:destination="@id/updatePhoneConfirmFragment" />
+            android:id="@+id/action_verifyCodeFragment_newPhone_to_confirmUpdatePhoneFragment"
+            app:destination="@id/confirmUpdatePhoneFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/updatePhoneConfirmFragment"
-        android:name="com.hhsj.ilive.ui.main.update.UpdatePhoneConfirmFragment"
-        android:label="UpdatePhoneConfirmFragment" />
+        android:id="@+id/confirmUpdatePhoneFragment"
+        android:name="com.hhsj.ilive.ui.main.ConfirmFragment"
+        android:label="ConfirmUpdatePhoneFragment"/>
 </navigation>

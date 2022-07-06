@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_identity_authentication"
+    app:startDestination="@id/identityAuthenticationFragment">
+
+    <fragment
+        android:id="@+id/identityAuthenticationFragment"
+        android:name="com.hhsj.ilive.ui.main.my.RealNameCardFragment"
+        android:label="identityAuthenticationFragment">
+        <action
+            android:id="@+id/action_identityAuthenticationFragment_to_identityAuthenticationConfirmFragment"
+            app:destination="@id/identityAuthenticationConfirmFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/identityAuthenticationConfirmFragment"
+        android:name="com.hhsj.ilive.ui.main.ConfirmFragment"
+        android:label="identityAuthenticationConfirmFragment"/>
+
+</navigation>

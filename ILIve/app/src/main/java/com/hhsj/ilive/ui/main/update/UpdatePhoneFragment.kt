@@ -15,9 +15,10 @@ import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomFontEditText
 import com.hhsj.ilive.widget.CustomFontTextView
+import com.hhsj.ilive.widget.CustomToast
 
 /**
- * 修改手机号
+ * 修改手机号输入界面
  * @author YuHan
  */
 class UpdatePhoneFragment : BaseFragment() {
@@ -64,15 +65,18 @@ class UpdatePhoneFragment : BaseFragment() {
 
     private fun initViewMargin() {
         margin(mRootView,mTitleTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,39.2f)
-        margin(mRootView,mPhoneEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.6f)
-        margin(mRootView,mUpdateTipsTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,105.3f)
+        margin(mRootView,mPhoneEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.7f)
+        margin(mRootView,mUpdateTipsTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,88.8f)
         margin(mRootView,mFrozenTextView,ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,44.2f)
     }
 
     private fun initListener() {
+        mRootView.setOnClickListener {
+            hideSoft()
+        }
+
         mBackImageView.setOnClickListener {
-//            goBack(it.findNavController())
-            it.findNavController().popBackStack()
+            goBack(it.findNavController())
         }
         mPhoneEditText.addTextChangedListener {
             val input = it?.toString()
@@ -83,10 +87,16 @@ class UpdatePhoneFragment : BaseFragment() {
             }
         }
         mFrozenTextView.setOnClickListener {
-            //TODO 请求网络，请求成功后跳转到获取验证码界面
-            val bundle = Bundle()
-            bundle.putString(VERIFY_CODE_FROM_KEY, VERIFY_CODE_FROM_UPDATE_PHONE_NEW)
-            it.findNavController().navigate(R.id.action_updatePhoneFragment_to_verifyCodeFragment_newPhone,bundle)
+            val phone = mPhoneEditText.text.toString()
+            if(checkPhone(phone)){
+                CustomToast.getInstance(requireContext().applicationContext)
+                    .show(resources.getString(R.string.toast_telephone_error))
+            }else{
+                val bundle = Bundle()
+                bundle.putString(UPDATE_NEW_PHONE,phone)
+                bundle.putString(VERIFY_CODE_FROM_KEY, VERIFY_CODE_FROM_UPDATE_PHONE_NEW)
+                it.findNavController().navigate(R.id.action_updatePhoneFragment_to_verifyCodeFragment_newPhone,bundle)
+            }
         }
     }
 

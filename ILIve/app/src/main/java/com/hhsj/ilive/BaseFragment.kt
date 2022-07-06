@@ -1,25 +1,33 @@
 package com.hhsj.ilive
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.hhsj.ilive.widget.CustomToast
 import org.devio.takephoto.app.TakePhotoFragment
 
 const val VERIFY_CODE_FROM_KEY = "verify_code_from_key"
+const val UPDATE_NEW_PHONE = "update_new_phone"
 const val VERIFY_CODE_FROM_UPDATE_PHONE_NEW = "verify_code_from_update_phone_new"
 const val VERIFY_CODE_FROM_UPDATE_PHONE_OLD = "verify_code_from_update_phone_old"
 const val VERIFY_CODE_FROM_LOGOUT = "verify_code_from_logout"
 
 open class BaseFragment : TakePhotoFragment() {
 
-    private var mScreenWidthPixels: Int = 0
-    private var mScreenHeightPixels: Int = 0
+    var mScreenWidthPixels: Int = 0
+    var mScreenHeightPixels: Int = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -122,4 +130,33 @@ open class BaseFragment : TakePhotoFragment() {
 
     fun getRealWidth(width: Float) = (width / 100.0f * mScreenWidthPixels).toInt()
     fun getRealHeight(height: Float) = (height / 100.0f * mScreenWidthPixels).toInt()
+
+    fun checkPhone(phone: String) = (phone.length != 11 || phone[0] != '1' || phone.toLongOrNull() == null)
+
+    fun loadUrlWithBitmap(url: String,imageView: ImageView,block: (bitmap: Bitmap?) -> Unit){
+        Glide.with(requireContext()).asBitmap().load(url).addListener(object:
+            RequestListener<Bitmap> {
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Bitmap>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                CustomToast.getInstance(requireContext()).show("加载图片失败")
+                return true
+            }
+
+            override fun onResourceReady(
+                resource: Bitmap?,
+                model: Any?,
+                target: Target<Bitmap>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                block(resource)
+                imageView.setImageBitmap(resource)
+                return true
+            }
+        }).submit()
+    }
 }

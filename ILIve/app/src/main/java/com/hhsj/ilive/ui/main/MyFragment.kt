@@ -1,5 +1,6 @@
 package com.hhsj.ilive.ui.main
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.widget.NestedScrollView
 import com.bumptech.glide.Glide
@@ -16,10 +17,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
+import com.hhsj.ilive.ui.main.authentication.IdentityAuthenticationActivity
+import com.hhsj.ilive.ui.main.avatar.UpdateAvatarActivity
 import com.hhsj.ilive.ui.main.my.UserInfoActivity
 import com.hhsj.ilive.ui.main.my.UserQrCodeCardActivity
 import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.widget.CustomMyInfoItemView
+import com.permissionx.guolindev.PermissionX
 
 /**
  * 我的界面
@@ -31,6 +35,7 @@ class MyFragment : BaseFragment() {
     private lateinit var mInfoRootConstraintLayout: ConstraintLayout
     private lateinit var mCustomMyInfoItemView: CustomMyInfoItemView
     private lateinit var mAvatarImageView: ImageView
+    private lateinit var mCertificationImageView: ImageView
     private lateinit var mUserNameTextView: TextView
     private lateinit var mPhoneTextView: TextView
     private lateinit var mQrCodeImageView: ImageView
@@ -50,6 +55,7 @@ class MyFragment : BaseFragment() {
         mRootView = view.findViewById(R.id.root_view)
         mInfoRootConstraintLayout = view.findViewById(R.id.info_root)
         mAvatarImageView = view.findViewById(R.id.iv_avatar)
+        mCertificationImageView = view.findViewById(R.id.iv_certification)
         mCustomMyInfoItemView = view.findViewById(R.id.info_item_setting)
         mUserNameTextView = view.findViewById(R.id.tv_name)
         mPhoneTextView = view.findViewById(R.id.tv_phone)
@@ -71,7 +77,6 @@ class MyFragment : BaseFragment() {
         val token = mActivity.mUserInfoViewModelProvider.getToken()
 
         Glide.with(this).load(header)
-            .placeholder(R.mipmap.icon_avatar_rectangle).error(R.mipmap.icon_avatar_rectangle)
             .apply(RequestOptions().transforms(RoundedCorners(7)))
             .into(mAvatarImageView)
         LogUtils.e("avatar: $header -- phone: $phone")
@@ -92,12 +97,33 @@ class MyFragment : BaseFragment() {
             startUserInfoActivity(true)
         }
 
+        mAvatarImageView.setOnClickListener {
+            PermissionX.init(activity)
+                .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .request { allGranted, grantedList, deniedList ->
+                    if (allGranted) {
+
+                        val intent = Intent(requireContext(),UpdateAvatarActivity::class.java)
+                        intent.putExtra(UpdateAvatarActivity.PREVIEW_AVATAR,true)
+                        startActivity(intent)
+
+                    } else {
+                        Toast.makeText(activity, "These permissions are denied: $deniedList", Toast.LENGTH_LONG).show()
+                    }
+                }
+        }
+
         mQrCodeImageView.setOnClickListener {
             val intent = Intent(requireContext(),UserQrCodeCardActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 mActivity,mQrCodeImageView,"ImageQrCode"
             )
             startActivity(intent,options.toBundle())
+        }
+
+        mCertificationImageView.setOnClickListener {
+            val intent = Intent(requireContext(),IdentityAuthenticationActivity::class.java)
+            startActivity(intent)
         }
     }
 

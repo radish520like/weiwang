@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_preview_avatar"
+    app:startDestination="@id/previewAvatarFragment">
+
+    <fragment
+        android:id="@+id/previewAvatarFragment"
+        android:name="com.hhsj.ilive.ui.main.avatar.PreviewAvatarFragment"
+        android:label="PreviewAvatarFragment"/>
+
+</navigation>

@@ -15,6 +15,7 @@ import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomFontEditText
 import com.hhsj.ilive.widget.CustomFontTextView
+import com.hhsj.ilive.widget.CustomToast
 
 /**
  * 修改昵称
@@ -75,8 +76,8 @@ class UpdateNickNameFragment : BaseFragment() {
 
     private fun initViewMargin() {
         margin(mRootView,mTitleTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,39.2f)
-        margin(mRootView,mNickNameEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.6f)
-        margin(mRootView,mUpdateNickNameTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,105.3f)
+        margin(mRootView,mNickNameEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.7f)
+        margin(mRootView,mUpdateNickNameTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,90f)
         margin(mRootView,mFrozenTextView,ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,44.2f)
     }
 
@@ -84,9 +85,20 @@ class UpdateNickNameFragment : BaseFragment() {
         mBackImageView.setOnClickListener {
             goBack(it.findNavController())
         }
+        mRootView.setOnClickListener {
+            hideSoft()
+        }
         mFrozenTextView.setOnClickListener {
-            //mNickNameEditText
-            println("abc : 1qqqqqqqqqq")
+            val nickName = mNickNameEditText.text.toString()
+            if(nickName.isNotEmpty()){
+                mUserInfoViewModelProvider.updateUserInfo(nickName,success = {
+                    goBack(it.findNavController())
+                },failure = {
+                    CustomToast.getInstance(requireContext()).show(resources.getString(R.string.error_update_nick_name_failure))
+                })
+            }else{
+                CustomToast.getInstance(requireContext()).show(resources.getString(R.string.error_update_nick_name_format))
+            }
         }
     }
 

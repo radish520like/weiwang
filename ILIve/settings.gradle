@@ -1,2 +1,3 @@
 rootProject.name = "ILive"
 include ':app',':takephoto_library'
+include ':OSS_library'

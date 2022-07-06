@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_80">
+
+    <View
+        android:id="@+id/iv_card_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!--  上半部分  -->
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:layout_margin="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_blur"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/blur_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:cardCornerRadius="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="1dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:textColor="@color/text_user_info_qr_code"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview_avatar"
+        app:textFont="Regular" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:textColor="@color/black_40"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tv_nick_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_nick_name"
+        app:textFont="Normal" />
+
+    <!--  下半部分1   -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_real_name_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:layout_below="@id/top_info_root">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@mipmap/icon_shield"/>
+
+        <com.hhsj.ilive.widget.CustomFontTextView
+            android:id="@+id/tv_real_name_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:textFont="Normal"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black_40"
+            android:text="@string/qr_code_card_real_name_authentication_tips"/>
+
+        <ImageView
+            android:id="@+id/iv_real_name_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/iv_logo"
+            app:layout_constraintEnd_toEndOf="@id/iv_logo"
+            app:layout_constraintTop_toBottomOf="@id/iv_logo"
+            android:src="@mipmap/icon_real_name_tips"/>
+
+        <com.hhsj.ilive.widget.CustomEnableTextView
+            android:id="@+id/tv_start_authentication"
+            android:layout_width="230dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            app:textFont="Regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_real_name_tips"
+            android:text="@string/real_name_authentication_start"/>
+
+        <com.hhsj.ilive.widget.CustomFontTextView
+            android:id="@+id/tv_real_name_bottom_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            app:textFont="Light"
+            android:text="@string/qr_code_card_qr_code_tips"
+            android:textColor="@color/register_login_edit_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_authentication"/>
+
+        <ImageView
+            android:id="@+id/iv_real_name_refresh"
+            android:layout_width="25dp"
+            android:layout_height="21dp"
+            android:src="@mipmap/icon_refresh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  下半部分2  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_qr_code_root"
+        android:layout_below="@id/top_info_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_bg"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_qr_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:transitionName="ImageQrCode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.hhsj.ilive.widget.CustomFontTextView
+            android:id="@+id/qr_code_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            app:textFont="Light"
+            android:text="@string/qr_code_card_qr_code_tips"
+            android:textColor="@color/register_login_edit_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_qr_code"/>
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="25dp"
+            android:layout_height="21dp"
+            android:src="@mipmap/icon_refresh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

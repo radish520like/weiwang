@@ -47,14 +47,10 @@ class ProtocolLinkFragment: BaseFragment() {
 
         initListener()
 
-        val titleResourceId = arguments?.getInt(TITLE,-1) ?: -1
-        val contentResourceId = arguments?.getInt(CONTENT,-1) ?: -1
-        if(titleResourceId != -1){
-            mTitleTextView.text = resources.getString(titleResourceId)
-        }
-        if(contentResourceId != -1){
-            mContentTextView.text = resources.getString(contentResourceId)
-        }
+        val title = arguments?.getString(TITLE,) ?: resources.getString(R.string.license_server_protocol)
+        val content = arguments?.getString(CONTENT) ?: resources.getString(R.string.license_server_content)
+        mTitleTextView.text = title
+        mContentTextView.text = content
     }
 
     private fun initListener(){

@@ -109,17 +109,32 @@
     <string name="update_user_info_update_avatar_protocol_title">微网用户头像文明使用规范</string>
     <string name="update_user_info_update_avatar_protocol_content">欢迎你使用微网软件及服务！</string>
     <string name="update_user_info_update_avatar_agree">同意并选择</string>
-    
+
     <string name="update_user_info_update_avatar_text">更换新头像</string>
     <string name="update_user_info_save_text">保存到相册</string>
     <string name="update_user_info_back_text">返回上一页</string>
 
     <!--  real name authentication  -->
+    <string name="real_name_authentication_msg">微网用户实名认证</string>
+    <string name="real_name_authentication_tips">保护您的合法权益</string>
+    <string name="real_name_authentication_tips2">用户需准备有效期内二代身份证</string>
     <string name="real_name_authentication_start">开始认证</string>
     <string name="real_name_authentication_title">用户实名认证</string>
     <string name="real_name_authentication_explain">微网用户凭身份证仅可完成一个账户实名认证</string>
     <string name="real_name_authentication_protocol">《微网用户实名认证服务协议》</string>
     <string name="real_name_authentication_agree">同意并认证</string>
+
+    <!--  Toast  -->
+    <string name="error_upload_failure">上传失败</string>
+    <string name="error_update_phone">更新手机号失败</string>
+    <string name="error_update_avatar">更新头像失败</string>
+    <string name="save_picture_success">保存图片成功</string>
+    <string name="save_picture_failure">图片保存失败</string>
+    <string name="error_update_nick_name_format">昵称格式有误</string>
+    <string name="error_update_nick_name_failure">昵称修改失败</string>
+    <string name="error_update_account_length">长度8~12位</string>
+    <string name="error_update_account_failure">"修改账号失败"</string>
+    <string name="error_update_account_format">"仅可输入数字和字母不区分大小写"</string>
 
 
 </resources>

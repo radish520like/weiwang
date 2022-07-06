@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
 import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
+import com.hhsj.ilive.utils.SoftKeyBoardListener
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomFontEditText
@@ -34,6 +35,9 @@ class UpdateAccountFragment : BaseFragment() {
     private lateinit var mActivity: UserInfoActivity
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
 
+    private var mVerifyAccountSuccess: Boolean = false
+    private var mErrorMsg: String = "修改账号失败"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +60,6 @@ class UpdateAccountFragment : BaseFragment() {
         mFrozenTextView.setCustomDrawable(unEnableDrawable = R.drawable.shape_round_rect_button_unenable_gray)
 
         initViewMargin()
-        initListener()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -74,33 +77,62 @@ class UpdateAccountFragment : BaseFragment() {
         mFrozenTextView.canClick(accountLimit > 0)
         mFrozenTextView.isClickable = (accountLimit > 0)
 
+        initListener()
     }
 
     private fun initViewMargin() {
         margin(mRootView,mTitleTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,39.2f)
-        margin(mRootView,mAccountEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.6f)
-        margin(mRootView,mUpdateNickNameTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,105.3f)
+        margin(mRootView,mAccountEditText,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,66.7f)
+        margin(mRootView,mUpdateNickNameTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,88.8f)
         margin(mRootView,mFrozenTextView,ConstraintSet.BOTTOM,mRootView,ConstraintSet.BOTTOM,44.2f)
     }
 
     private fun initListener() {
+        mRootView.setOnClickListener {
+            hideSoft()
+        }
         mBackImageView.setOnClickListener {
             goBack(it.findNavController())
         }
         mFrozenTextView.setOnClickListener {
-            val account = mAccountEditText.text.toString()
-            if(account.length < 8 || account.length > 12){
-                CustomToast.getInstance(requireContext()).show("长度8~12位")
+            if(mVerifyAccountSuccess){
+                goBack(it.findNavController())
             }else{
-                val regex = Regex("[A-Za-z0-9]+")
-                if(regex.matches(account)){
-                    //TODO
-                }else{
-                    CustomToast.getInstance(requireContext()).show("仅可输入数字和字母不区分大小写")
-                }
+                CustomToast.getInstance(requireContext()).show(mErrorMsg)
             }
+        }
 
+        SoftKeyBoardListener.setListener(mActivity,object: SoftKeyBoardListener.OnSoftKeyBoardChangeListener{
+            override fun keyBoardShow(height: Int) {}
+
+            override fun keyBoardHide(height: Int) {
+                verifyAccount()
+            }
+        })
+    }
+
+    private fun verifyAccount(){
+        val account = mAccountEditText.text.toString()
+        if(account.length < 8 || account.length > 12){
+            CustomToast.getInstance(requireContext()).show(resources.getString(R.string.error_update_account_length))
+        }else{
+            val regex = Regex("[A-Za-z0-9]+")
+            if(regex.matches(account)){
+                mUserInfoViewModelProvider.updateUserInfo(account = account,success = {
+                    verifyAccountSuccess(true)
+                },failure = {
+                    verifyAccountSuccess(false)
+                    mErrorMsg = it?: resources.getString(R.string.error_update_account_failure)
+                })
+            }else{
+                CustomToast.getInstance(requireContext()).show(resources.getString(R.string.error_update_account_format))
+            }
         }
     }
 
+    private fun verifyAccountSuccess(success: Boolean){
+        mVerifyAccountSuccess = success
+        if(success) mCircleImageView.setImageResource(R.drawable.shape_circle_solid_green)
+        else mCircleImageView.setImageResource(R.drawable.shape_circle_solid_red)
+    }
 }

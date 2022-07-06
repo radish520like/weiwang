@@ -31,5 +31,14 @@ class CustomFontEditText(context: Context, attrs: AttributeSet?) :
         }
         val typeFace = Typeface.createFromAsset(context.assets, path)
         typeface = typeFace
+
+        val hint = hint.toString()
+        setOnFocusChangeListener { _, focus ->
+            if(focus){
+                setHint("")
+            }else{
+                setHint(hint)
+            }
+        }
     }
 }

@@ -144,7 +144,7 @@ object HttpServer {
         header: String = "",
         phone: String = "",
         success: () -> Unit,
-        failure: () -> Unit
+        failure: (String?) -> Unit
     ) {
         val stringBuilder = StringBuilder("{")
             .apply {
@@ -156,8 +156,21 @@ object HttpServer {
             }
         val requestBody =
             RequestBody.create(MediaType.parse("application/json"), stringBuilder.toString())
-        println("abc : ${stringBuilder.toString()}")
-        //TODO
-//        retrofit.updateUserInfo(token, requestBody)
+        retrofit.updateUserInfo(token, requestBody).enqueue(object: Callback<HttpResponse>{
+            override fun onResponse(call: Call<HttpResponse>, response: Response<HttpResponse>) {
+                var body = response.body()
+                body?.apply {
+                    if(this.code == 200){
+                        success()
+                    }else{
+                        failure(this.msg)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<HttpResponse>, t: Throwable) {
+                failure(t.message)
+            }
+        })
     }
 }
