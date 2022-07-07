@@ -130,6 +130,7 @@
     <string name="error_update_avatar">更新头像失败</string>
     <string name="save_picture_success">保存图片成功</string>
     <string name="save_picture_failure">图片保存失败</string>
+    <string name="error_update_get_code_failure">获取验证码失败</string>
     <string name="error_update_nick_name_format">昵称格式有误</string>
     <string name="error_update_nick_name_failure">昵称修改失败</string>
     <string name="error_update_account_length">长度8~12位</string>

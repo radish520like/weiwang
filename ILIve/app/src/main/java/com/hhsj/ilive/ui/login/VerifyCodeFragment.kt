@@ -13,7 +13,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
 import com.hhsj.ilive.*
-import com.hhsj.ilive.ui.*
 import com.hhsj.ilive.ui.main.ConfirmFragment
 import com.hhsj.ilive.utils.LogUtils
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
@@ -110,9 +109,7 @@ class VerifyCodeFragment : BaseFragment() {
             //校验手机号
             mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister("",{},{})
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
-            arguments?.getString(UPDATE_NEW_PHONE)?.apply {
-                mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister(this,{},{})
-            }
+            // 新手机号获取验证码在上一步请求中已获取，需要获取 server 端返回值，判断新手机可以绑定。
         }
         mVerifyCodeTip.text = getString(R.string.verify_code_tips,mUserInfoViewModelProvider.getPhone())
 

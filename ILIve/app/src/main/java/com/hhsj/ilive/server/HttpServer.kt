@@ -1,10 +1,13 @@
 package com.hhsj.ilive.server
 
+import android.util.Log
 import com.hhsj.ilive.data.HttpResponse
 import com.hhsj.ilive.data.UserInfo
 import com.hhsj.ilive.utils.LogUtils
 import okhttp3.MediaType
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,14 +17,31 @@ import java.lang.StringBuilder
 
 //private const val HOST = "http://47.110.153.16:30238"
 private const val HOST = "http://219.246.116.9:88"
+private const val TAG = "HttpServer"
 
 object HttpServer {
 
+    private val loggingInterceptor = HttpLoggingInterceptor { message ->
+        Log.e(
+            TAG,
+            "retrofit Log : $message"
+        )
+    }
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+
     private val retrofit: ServerAPI = Retrofit.Builder()
         .baseUrl(HOST)
+        .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
         .create(ServerAPI::class.java)
+
+    init {
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    }
 
     /**
      * 注册登录验证码
@@ -148,10 +168,10 @@ object HttpServer {
     ) {
         val stringBuilder = StringBuilder("{")
             .apply {
-                if (nickName.isNotEmpty()) append("\"nickName\":$nickName")
-                if (nickName.isNotEmpty()) append("\"account\":$account")
-                if (nickName.isNotEmpty()) append("\"header\":$header")
-                if (nickName.isNotEmpty()) append("\"phone\":$phone")
+                if (nickName.isNotEmpty()) append("\"nickName\":\"$nickName\"")
+                if (account.isNotEmpty()) append("\"account\":\"$account\"")
+                if (header.isNotEmpty()) append("\"header\":\"$header\"")
+                if (phone.isNotEmpty()) append("\"phone\":\"$phone\"")
                 append("}")
             }
         val requestBody =

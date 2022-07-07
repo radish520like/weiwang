@@ -57,11 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:gravity="center"
+            app:textFont="Regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/view_divider"
             android:text="@string/user_info_logout_dialog_title"
-            android:textColor="@color/black_0"
-            android:textSize="14sp" />
+            android:textColor="@color/round_rect_button_enable"
+            android:textSize="17sp" />
 
         <View
             android:id="@+id/view_divider"
@@ -81,7 +82,7 @@
             app:layout_constraintBottom_toTopOf="@id/bottom_view"
             android:text="@string/user_info_logout_dialog_exit"
             android:textColor="@color/round_rect_button_enable"
-            android:textSize="16sp" />
+            android:textSize="17sp" />
 
         <View
             android:id="@+id/bottom_view"

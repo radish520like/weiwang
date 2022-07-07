@@ -94,7 +94,6 @@ public class OssService {
         put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
             @Override
             public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
-                System.out.println("abc : progress " + request + " -- " + currentSize + " --- " + totalSize);
                 Log.d("PutObject", "currentSize: " + currentSize + " totalSize: " + totalSize);
                 int progress = (int) (100 * currentSize / totalSize);
                 if(mOnUploadListener != null){

@@ -71,6 +71,10 @@ class MyFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         mActivity = activity as MainActivity
 
+        updateUserInfo()
+    }
+
+    private fun updateUserInfo(){
         val header = mActivity.mUserInfoViewModelProvider.getHeader()
         val nickName = mActivity.mUserInfoViewModelProvider.getNickName()
         val phone = mActivity.mUserInfoViewModelProvider.getPhone()
@@ -83,6 +87,11 @@ class MyFragment : BaseFragment() {
 
         mUserNameTextView.text = nickName
         mPhoneTextView.text = phone
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateUserInfo()
     }
 
     private fun initMargin(){

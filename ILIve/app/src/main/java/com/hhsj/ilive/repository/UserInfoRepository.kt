@@ -30,7 +30,7 @@ class UserInfoRepository {
 
     fun saveUserInfo(info: UserInfo) {
         SPUtils.putInt(USER_ID,info.data.id)
-        SPUtils.putString(USER_TOKEN,info.token)
+        SPUtils.putString(USER_TOKEN,"bearer ${info.token}")
         SPUtils.putString(USER_PHONE,info.data.phone)
         SPUtils.putString(USER_NICKNAME,info.data.nickName)
         SPUtils.putString(USER_HEADER,info.data.header)

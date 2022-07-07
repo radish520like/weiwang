@@ -24,7 +24,7 @@
         app:textFont="Regular"
         android:gravity="center_vertical"
         android:textColor="@color/text_verify_code_tips"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <com.hhsj.ilive.widget.CustomFontTextView
         android:id="@+id/tv_value"

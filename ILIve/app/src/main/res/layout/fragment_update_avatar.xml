@@ -44,6 +44,14 @@
             android:textColor="@color/round_rect_button_enable"
             android:textSize="17sp" />
 
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:background="@color/white_40"
+            app:layout_constraintTop_toBottomOf="@id/tv_logout"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <com.hhsj.ilive.widget.CustomFontTextView
             android:id="@+id/tv_save"
             android:layout_width="match_parent"

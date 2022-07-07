@@ -59,8 +59,8 @@ class UserInfoViewModel : ViewModel() {
     }
 
     fun logout(success: () -> Unit, failure: () -> Unit) {
-        setToken("")
         HttpServer.logout(getToken(), {
+            setToken("")
             success.invoke()
         }, failure)
     }

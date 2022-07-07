@@ -65,13 +65,13 @@ class SettingAccountSecurityFragment : BaseFragment() {
         }
 
         mAccountSafeLogoutInfoItemView.setOnClickListener {
-            mUserInfoViewModelProvider.logout(success = {
-                val intent = Intent(requireContext(), LoginActivity::class.java)
-                intent.putExtra("fromLogOutPage",true)
-                startActivity(intent)
-            },failure = {
-
-            })
+//            mUserInfoViewModelProvider.logout(success = {
+//                val intent = Intent(requireContext(), LoginActivity::class.java)
+//                intent.putExtra("fromLogOutPage",true)
+//                startActivity(intent)
+//            },failure = {
+//
+//            })
         }
     }
 }

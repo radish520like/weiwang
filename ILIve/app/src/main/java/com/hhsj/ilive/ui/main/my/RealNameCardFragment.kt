@@ -142,6 +142,9 @@ class RealNameCardFragment : BaseFragment() {
             bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.real_name_authentication_explain))
             bundle.putString(ConfirmFragment.BOTTOM_ITEM1,getString(R.string.real_name_authentication_protocol))
             bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.real_name_authentication_agree))
+            bundle.putSerializable(ConfirmFragment.TYPE,
+                ConfirmFragment.Companion.ConfirmType.REAL_NAME_AUTHORIZATION
+            )
             it.findNavController().navigate(R.id.action_identityAuthenticationFragment_to_identityAuthenticationConfirmFragment,bundle)
         }
     }

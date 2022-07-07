@@ -92,12 +92,15 @@ class UpdatePhoneFragment : BaseFragment() {
                 CustomToast.getInstance(requireContext().applicationContext)
                     .show(resources.getString(R.string.toast_telephone_error))
             }else{
-                val bundle = Bundle()
-                bundle.putString(UPDATE_NEW_PHONE,phone)
-                bundle.putString(VERIFY_CODE_FROM_KEY, VERIFY_CODE_FROM_UPDATE_PHONE_NEW)
-                it.findNavController().navigate(R.id.action_updatePhoneFragment_to_verifyCodeFragment_newPhone,bundle)
+                mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister(phone,success = {
+                    val bundle = Bundle()
+                    bundle.putString(UPDATE_NEW_PHONE,phone)
+                    bundle.putString(VERIFY_CODE_FROM_KEY, VERIFY_CODE_FROM_UPDATE_PHONE_NEW)
+                    it.findNavController().navigate(R.id.action_updatePhoneFragment_to_verifyCodeFragment_newPhone,bundle)
+                },failure = {
+                    CustomToast.getInstance(requireContext()).show(it ?: resources.getString(R.string.error_update_get_code_failure))
+                })
             }
         }
     }
-
 }

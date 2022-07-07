@@ -15,23 +15,23 @@ interface ServerAPI {
     fun registerOrLogin(@Body body: RequestBody): Call<UserInfo>
 
     @GET("/api/member/member/loginOut")
-    fun logOut(@Query("Authorization") bearerToken: String): Call<HttpResponse>
+    fun logOut(@Header("Authorization") bearerToken: String): Call<HttpResponse>
 
     @POST("/api/member/member/update/info")
     fun updateUserInfo(
-        @Query("Authorization") bearerToken: String,
+        @Header("Authorization") bearerToken: String,
         @Body body: RequestBody
     ): Call<HttpResponse>
 
     @GET("/api/member/member/info")
-    fun getUserInfo(@Query("Authorization") bearerToken: String): Call<UserInfo>
+    fun getUserInfo(@Header("Authorization") bearerToken: String): Call<UserInfo>
 
     @GET("/api/member/member/sms/sendCode")
-    fun getVerifyCode(@Query("Authorization") bearerToken: String,@Query("phone") phone: String): Call<HttpResponse>
+    fun getVerifyCode(@Header("Authorization") bearerToken: String,@Query("phone") phone: String): Call<HttpResponse>
 
     @GET("/api/member/member/check/phone")
     fun checkPhone(
-        @Query("Authorization") bearerToken: String,
+        @Header("Authorization") bearerToken: String,
         @Query("phone") phone: String, @Query("code") code: String
     ): Call<HttpResponse>
 }

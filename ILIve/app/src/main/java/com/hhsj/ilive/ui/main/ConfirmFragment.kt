@@ -136,6 +136,7 @@ class ConfirmFragment : BaseFragment() {
                         CustomToast.getInstance(requireContext()).show(it ?: resources.getString(R.string.error_update_phone))
                     })
                 }
+                ConfirmType.REAL_NAME_AUTHORIZATION -> {}
                 else -> {
                     mUserInfoViewModelProvider.logout({
                         LogUtils.e("logout Success")

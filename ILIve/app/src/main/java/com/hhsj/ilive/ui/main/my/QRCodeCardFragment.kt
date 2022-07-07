@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -35,8 +35,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 class QRCodeCardFragment : BaseFragment() {
 
-    private lateinit var mRootView: FrameLayout
-    private lateinit var mRootCardView: CardView
+    private lateinit var mRootView: ConstraintLayout
     private lateinit var mTopInfoRootView: ConstraintLayout
     private lateinit var mBottomQrCodeRootView: ConstraintLayout
     private lateinit var mBottomRealNameRootView: ConstraintLayout
@@ -48,12 +47,13 @@ class QRCodeCardFragment : BaseFragment() {
     private lateinit var mQrCodeImageView: ImageView
     private lateinit var mQrCodeTips: CustomFontTextView
     private lateinit var mRefreshImageView: ImageView
-    private lateinit var mRealNameRefreshImageView: ImageView
     private lateinit var mLogoImageView: ImageView
-//    private lateinit var mRealNameTipsTextView: TextView
+
+    //    private lateinit var mRealNameTipsTextView: TextView
     private lateinit var mRealNameTipsImageView: ImageView
     private lateinit var mRealNameBottomTipsTextView: TextView
     private lateinit var mStartAuthenticationTextView: CustomEnableTextView
+    private lateinit var mRoundBackgroundImageView: ImageView
 
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
     private lateinit var mOutAnimatorSet: AnimatorSet
@@ -70,7 +70,6 @@ class QRCodeCardFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mRootView = view.findViewById(R.id.root_view)
-        mRootCardView = view.findViewById(R.id.card_view_root)
         mTopInfoRootView = view.findViewById(R.id.top_info_root)
         mBottomQrCodeRootView = view.findViewById(R.id.bottom_qr_code_root)
         mBottomRealNameRootView = view.findViewById(R.id.bottom_real_name_root)
@@ -82,13 +81,14 @@ class QRCodeCardFragment : BaseFragment() {
         mQrCodeImageView = view.findViewById(R.id.iv_qr_code)
         mQrCodeTips = view.findViewById(R.id.qr_code_tips)
         mRefreshImageView = view.findViewById(R.id.iv_refresh)
-        mRealNameRefreshImageView = view.findViewById(R.id.iv_real_name_refresh)
 
         mLogoImageView = view.findViewById(R.id.iv_logo)
 //        mRealNameTipsTextView = view.findViewById(R.id.tv_real_name_tips)
         mRealNameTipsImageView = view.findViewById(R.id.iv_real_name_tips)
         mRealNameBottomTipsTextView = view.findViewById(R.id.tv_real_name_bottom_tips)
         mStartAuthenticationTextView = view.findViewById(R.id.tv_start_authentication)
+
+        mRoundBackgroundImageView = view.findViewById(R.id.iv_round_background)
 
         mStartAuthenticationTextView.canClick(true)
         initMargin()
@@ -117,14 +117,14 @@ class QRCodeCardFragment : BaseFragment() {
 
         Glide.with(requireContext()).load(avatar).transform(BlurTransformation(25)).apply(
             RequestOptions.bitmapTransform(
-                RoundedCornersTransformation(7, 1, RoundedCornersTransformation.CornerType.TOP)
+                RoundedCornersTransformation(7, 0, RoundedCornersTransformation.CornerType.TOP)
             )
         ).into(mBackgroundImageView)
         mNickNameTextView.text = nickName
         mPhoneTextView.text = phone
 
-        val realWidth = getRealWidth(50.8f)
-        val realHeight = getRealHeight(50.8f)
+        val realWidth = getRealWidth(50.7f)
+        val realHeight = getRealHeight(50.7f)
 
 
         val stringBuilder = StringBuilder()
@@ -143,7 +143,31 @@ class QRCodeCardFragment : BaseFragment() {
     }
 
     private fun initMargin() {
-        margin(mRootCardView, marginTop = 33.8f, marginStart = 6.4f, marginEnd = 6.4f)
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.TOP,
+            mRootView,
+            ConstraintSet.TOP,
+            30.8f
+        )
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.START,
+            mRootView,
+            ConstraintSet.START,
+            6.4f
+        )
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.END,
+            mRootView,
+            ConstraintSet.END,
+            6.4f
+        )
+
         //AvatarCardView
         margin(
             mTopInfoRootView,
@@ -191,6 +215,14 @@ class QRCodeCardFragment : BaseFragment() {
         //qrCodeInfo
         margin(
             mBottomQrCodeRootView,
+            mQrCodeImageView,
+            ConstraintSet.TOP,
+            mBottomQrCodeRootView,
+            ConstraintSet.TOP,
+            16.9f
+        )
+        margin(
+            mBottomQrCodeRootView,
             mQrCodeTips,
             ConstraintSet.TOP,
             mQrCodeImageView,
@@ -198,18 +230,18 @@ class QRCodeCardFragment : BaseFragment() {
             9.2f
         )
         margin(
-            mBottomQrCodeRootView,
+            mRootView,
             mRefreshImageView,
             ConstraintSet.END,
-            mBottomQrCodeRootView,
+            mRoundBackgroundImageView,
             ConstraintSet.END,
             4.9f
         )
         margin(
-            mBottomQrCodeRootView,
+            mRootView,
             mRefreshImageView,
             ConstraintSet.BOTTOM,
-            mBottomQrCodeRootView,
+            mRoundBackgroundImageView,
             ConstraintSet.BOTTOM,
             5.9f
         )
@@ -248,45 +280,28 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.BOTTOM,
             8.21f
         )
-
-        margin(
-            mBottomRealNameRootView,
-            mRealNameRefreshImageView,
-            ConstraintSet.END,
-            mBottomRealNameRootView,
-            ConstraintSet.END,
-            4.9f
-        )
-        margin(
-            mBottomRealNameRootView,
-            mRealNameRefreshImageView,
-            ConstraintSet.BOTTOM,
-            mBottomRealNameRootView,
-            ConstraintSet.BOTTOM,
-            5.9f
-        )
     }
 
     private fun initSize() {
+        calculateViewHeight(mRoundBackgroundImageView, 139.7f)
         calculateViewHeight(mTopInfoRootView, 51.3f)
-        calculateViewHeight(mRootCardView, 139.7f)
+        calculateViewHeight(mBottomQrCodeRootView, 88.4f)
+        calculateViewHeight(mBottomRealNameRootView, 88.4f)
     }
 
-    private fun initListener(){
+    private fun initListener() {
         mRefreshImageView.setOnClickListener {
-//            mBottomQrCodeRootView.visibility = View.GONE
-//            mBottomRealNameRootView.visibility = View.VISIBLE
-            mOutAnimatorSet.setTarget(mBottomQrCodeRootView)
-            mInAnimatorSet.setTarget(mBottomRealNameRootView)
-            mOutAnimatorSet.start()
-            mInAnimatorSet.start()
-        }
-
-        mRealNameRefreshImageView.setOnClickListener {
-//            mBottomQrCodeRootView.visibility = View.VISIBLE
-//            mBottomRealNameRootView.visibility = View.GONE
-            mOutAnimatorSet.setTarget(mBottomRealNameRootView)
-            mInAnimatorSet.setTarget(mBottomQrCodeRootView)
+            if (mBottomQrCodeRootView.isVisible) {
+                mBottomQrCodeRootView.visibility = View.GONE
+                mBottomRealNameRootView.visibility = View.VISIBLE
+                mOutAnimatorSet.setTarget(mBottomQrCodeRootView)
+                mInAnimatorSet.setTarget(mBottomRealNameRootView)
+            } else {
+                mBottomQrCodeRootView.visibility = View.VISIBLE
+                mBottomRealNameRootView.visibility = View.GONE
+                mOutAnimatorSet.setTarget(mBottomRealNameRootView)
+                mInAnimatorSet.setTarget(mBottomQrCodeRootView)
+            }
             mOutAnimatorSet.start()
             mInAnimatorSet.start()
         }
@@ -294,18 +309,40 @@ class QRCodeCardFragment : BaseFragment() {
         //开始认证
         mStartAuthenticationTextView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString(ConfirmFragment.TITLE,resources.getString(R.string.real_name_authentication_title))
-            bundle.putInt(ConfirmFragment.ICON,R.mipmap.icon_id_card)
-            bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.real_name_authentication_explain))
-            bundle.putString(ConfirmFragment.BOTTOM_ITEM1,getString(R.string.real_name_authentication_protocol))
-            bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.real_name_authentication_agree))
-            it.findNavController().navigate(R.id.action_QRCodeCardFragment_to_RealNameAuthorizationFragment,bundle)
+            bundle.putString(
+                ConfirmFragment.TITLE,
+                resources.getString(R.string.real_name_authentication_title)
+            )
+            bundle.putInt(ConfirmFragment.ICON, R.mipmap.icon_id_card)
+            bundle.putString(
+                ConfirmFragment.TIPS,
+                resources.getString(R.string.real_name_authentication_explain)
+            )
+            bundle.putString(
+                ConfirmFragment.BOTTOM_ITEM1,
+                getString(R.string.real_name_authentication_protocol)
+            )
+            bundle.putString(
+                ConfirmFragment.BOTTOM_ITEM2,
+                getString(R.string.real_name_authentication_agree)
+            )
+            bundle.putSerializable(ConfirmFragment.TYPE,
+                ConfirmFragment.Companion.ConfirmType.REAL_NAME_AUTHORIZATION
+            )
+            it.findNavController()
+                .navigate(R.id.action_QRCodeCardFragment_to_RealNameAuthorizationFragment, bundle)
         }
     }
-    
-    private fun initAnimator(){
-        mOutAnimatorSet = AnimatorInflater.loadAnimator(requireContext(), R.animator.anim_qr_card_out) as AnimatorSet
-        mInAnimatorSet = AnimatorInflater.loadAnimator(requireContext(), R.animator.anim_qr_card_in) as AnimatorSet
+
+    private fun initAnimator() {
+        mOutAnimatorSet = AnimatorInflater.loadAnimator(
+            requireContext(),
+            R.animator.anim_qr_card_out
+        ) as AnimatorSet
+        mInAnimatorSet = AnimatorInflater.loadAnimator(
+            requireContext(),
+            R.animator.anim_qr_card_in
+        ) as AnimatorSet
 
         val distance = 16000
         val scale = resources.displayMetrics.density * distance
