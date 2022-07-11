@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.findNavController
@@ -26,18 +24,19 @@ import com.hhsj.ilive.widget.CustomEnableTextView
  */
 class RealNameCardFragment : BaseFragment() {
 
-    private lateinit var mRootView: FrameLayout
-    private lateinit var mRootCardView: CardView
+    private lateinit var mRootView: ConstraintLayout
     private lateinit var mTopInfoRootView: ConstraintLayout
     private lateinit var mBottomRealNameRootView: ConstraintLayout
     private lateinit var mBackgroundImageView: ImageView
     private lateinit var mLogoImageView: ImageView
-//    private lateinit var mRealNameTipsTextView: TextView
+
+    //    private lateinit var mRealNameTipsTextView: TextView
     private lateinit var mRealNameTipsImageView: ImageView
     private lateinit var mRealNameBottomTipsTextView: TextView
     private lateinit var mStartAuthenticationTextView: CustomEnableTextView
     private lateinit var mRealNameMsgTextView: TextView
     private lateinit var mFlowerImageView: ImageView
+    private lateinit var mRoundBackgroundImageView: ImageView
 
     private lateinit var mUserInfoViewModelProvider: UserInfoViewModel
 
@@ -52,7 +51,6 @@ class RealNameCardFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mRootView = view.findViewById(R.id.root_view)
-        mRootCardView = view.findViewById(R.id.card_view_root)
         mTopInfoRootView = view.findViewById(R.id.top_info_root)
         mBottomRealNameRootView = view.findViewById(R.id.bottom_real_name_root)
         mBackgroundImageView = view.findViewById(R.id.iv_bg)
@@ -64,6 +62,7 @@ class RealNameCardFragment : BaseFragment() {
         mRealNameTipsImageView = view.findViewById(R.id.iv_real_name_tips)
         mRealNameBottomTipsTextView = view.findViewById(R.id.tv_real_name_bottom_tips)
         mStartAuthenticationTextView = view.findViewById(R.id.tv_start_authentication)
+        mRoundBackgroundImageView = view.findViewById(R.id.iv_round_background)
 
         mStartAuthenticationTextView.canClick(true)
         initMargin()
@@ -79,18 +78,43 @@ class RealNameCardFragment : BaseFragment() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        val avatar = mUserInfoViewModelProvider.getHeader()
-        val nickName = mUserInfoViewModelProvider.getNickName()
-        val phone = mUserInfoViewModelProvider.getPhone()
-
-        val realWidth = getRealWidth(50.8f)
-        val realHeight = getRealHeight(50.8f)
     }
 
     private fun initMargin() {
-        margin(mRootCardView, marginTop = 33.8f, marginStart = 6.4f, marginEnd = 6.4f)
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.TOP,
+            mRootView,
+            ConstraintSet.TOP,
+            30.8f
+        )
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.START,
+            mRootView,
+            ConstraintSet.START,
+            6.4f
+        )
+        margin(
+            mRootView,
+            mRoundBackgroundImageView,
+            ConstraintSet.END,
+            mRootView,
+            ConstraintSet.END,
+            6.4f
+        )
+
         //top
-        margin(mTopInfoRootView,mRealNameMsgTextView,ConstraintSet.TOP,mFlowerImageView,ConstraintSet.BOTTOM,3.1f)
+        margin(
+            mTopInfoRootView,
+            mRealNameMsgTextView,
+            ConstraintSet.TOP,
+            mFlowerImageView,
+            ConstraintSet.BOTTOM,
+            3.1f
+        )
 
         //real name authorization
         margin(
@@ -99,7 +123,7 @@ class RealNameCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mBottomRealNameRootView,
             ConstraintSet.TOP,
-            10.3f
+            10f
         )
 
         margin(
@@ -108,7 +132,7 @@ class RealNameCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mLogoImageView,
             ConstraintSet.BOTTOM,
-            11.5f
+            11f
         )
         margin(
             mBottomRealNameRootView,
@@ -116,7 +140,7 @@ class RealNameCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mRealNameTipsImageView,
             ConstraintSet.BOTTOM,
-            8.21f
+            8f
         )
         margin(
             mBottomRealNameRootView,
@@ -124,28 +148,30 @@ class RealNameCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mStartAuthenticationTextView,
             ConstraintSet.BOTTOM,
-            8.21f
+            8.2f
         )
     }
 
     private fun initSize() {
+        calculateViewHeight(mRoundBackgroundImageView, 139.7f)
         calculateViewHeight(mTopInfoRootView, 51.3f)
-        calculateViewHeight(mRootCardView, 139.7f)
     }
 
-    private fun initListener(){
+    private fun initListener() {
         //开始认证
         mStartAuthenticationTextView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString(ConfirmFragment.TITLE,resources.getString(R.string.real_name_authentication_title))
-            bundle.putInt(ConfirmFragment.ICON,R.mipmap.icon_id_card)
-            bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.real_name_authentication_explain))
-            bundle.putString(ConfirmFragment.BOTTOM_ITEM1,getString(R.string.real_name_authentication_protocol))
-            bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.real_name_authentication_agree))
-            bundle.putSerializable(ConfirmFragment.TYPE,
-                ConfirmFragment.Companion.ConfirmType.REAL_NAME_AUTHORIZATION
+            val bundle = initConfirmFragmentBundle(
+                title = resources.getString(R.string.real_name_authentication_title),
+                picture = R.mipmap.icon_id_card,
+                tips = resources.getString(R.string.real_name_authentication_explain),
+                bottom1 = resources.getString(R.string.real_name_authentication_protocol),
+                bottom2 = resources.getString(R.string.real_name_authentication_agree),
+                confirmType = ConfirmFragment.Companion.ConfirmType.REAL_NAME_AUTHORIZATION
             )
-            it.findNavController().navigate(R.id.action_identityAuthenticationFragment_to_identityAuthenticationConfirmFragment,bundle)
+            it.findNavController().navigate(
+                R.id.action_identityAuthenticationFragment_to_identityAuthenticationConfirmFragment,
+                bundle
+            )
         }
     }
 }

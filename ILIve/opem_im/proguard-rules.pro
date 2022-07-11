@@ -19,16 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
-#图片选择器
--keep class com.jph.takephoto.** { *; }
--dontwarn com.jph.takephoto.**
--keep class com.darsh.multipleimageselect.** { *; }
--dontwarn com.darsh.multipleimageselect.**
--keep class com.soundcloud.android.crop.** { *; }
--dontwarn com.soundcloud.android.crop.**
-
-#IM
--keep class io.openim.**{*;}
--keep class open_im_sdk.**{*;}
--keep class open_im_sdk_callback.**{*;}

@@ -1,7 +1,6 @@
 package com.hhsj.ilive.ui.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.findNavController
 import com.hhsj.ilive.BaseActivity
 import com.hhsj.ilive.BaseFragment
@@ -25,7 +25,6 @@ import com.hhsj.ilive.widget.CustomToast
 import org.devio.takephoto.compress.CompressConfig
 import org.devio.takephoto.model.CropOptions
 import org.devio.takephoto.model.TResult
-import java.io.File
 
 /**
  * 确定界面
@@ -45,6 +44,7 @@ class ConfirmFragment : BaseFragment() {
         enum class ConfirmType{
             UPDATE_PHONE,
             UPDATE_AVATAR,
+            LOG_OUT,
             REAL_NAME_AUTHORIZATION
         }
     }
@@ -99,6 +99,12 @@ class ConfirmFragment : BaseFragment() {
         val bottomItem2 = arguments?.getString(BOTTOM_ITEM2) ?: resources.getString(R.string.update_user_info_phone_confirm)
         mFromType = arguments?.get(TYPE) as ConfirmType?
 
+        if(mFromType == ConfirmType.LOG_OUT){
+            mTipsTextView.setTextColor(ResourcesCompat.getColor(resources,R.color.app_title_color,resources.newTheme()))
+        }else{
+            mTipsTextView.setTextColor(ResourcesCompat.getColor(resources,R.color.round_rect_button_enable,resources.newTheme()))
+        }
+
         mTitleTextView.text = title
         mLogoImageView.setImageResource(icon)
         mExplainTextView.text = explain
@@ -109,8 +115,8 @@ class ConfirmFragment : BaseFragment() {
 
     private fun initViewMargin() {
         margin(mRootView,mTitleTextView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,39.2f)
-        margin(mRootView,mLogoImageView,ConstraintSet.TOP,mTitleTextView,ConstraintSet.BOTTOM,15.2f)
-        margin(mRootView,mExplainTextView,ConstraintSet.TOP,mLogoImageView,ConstraintSet.BOTTOM,10.2f)
+        margin(mRootView,mLogoImageView,ConstraintSet.TOP,mRootView,ConstraintSet.TOP,58.7f)
+        margin(mRootView,mExplainTextView,ConstraintSet.TOP,mLogoImageView,ConstraintSet.BOTTOM,9.6f)
     }
 
     private fun initListener() {
@@ -137,7 +143,7 @@ class ConfirmFragment : BaseFragment() {
                     })
                 }
                 ConfirmType.REAL_NAME_AUTHORIZATION -> {}
-                else -> {
+                ConfirmType.LOG_OUT -> {
                     mUserInfoViewModelProvider.logout({
                         LogUtils.e("logout Success")
                     }, {})
@@ -146,6 +152,8 @@ class ConfirmFragment : BaseFragment() {
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     activity?.finish()
+                }
+                else -> {
                 }
             }
         }

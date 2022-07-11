@@ -51,7 +51,7 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        style="@style/TitleIcon"
+        style="@style/TitleIcon_back"
         android:layout_marginStart="5dp"
         android:src="@mipmap/icon_go_back"
         app:layout_constraintStart_toStartOf="parent"

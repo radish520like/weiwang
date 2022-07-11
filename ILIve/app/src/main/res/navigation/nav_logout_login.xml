@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/logOutFragment"
-        android:name="com.hhsj.ilive.ui.login.LogOutFragment"
+        android:name="com.hhsj.ilive.ui.main.ConfirmFragment"
         android:label="LogOutFragment" >
         <action
             android:id="@+id/action_logOutFragment_to_loginActivity"

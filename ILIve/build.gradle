@@ -1,9 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from : "config.gradle"
 buildscript {
     repositories {
         google()
         jcenter()
         mavenCentral()
+        maven {
+            allowInsecureProtocol = true
+            url 'http://121.37.25.71:8081/repository/maven2/' // 新地址
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"

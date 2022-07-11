@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -128,7 +129,13 @@ class QRCodeCardFragment : BaseFragment() {
 
 
         val stringBuilder = StringBuilder()
-        stringBuilder.append(phone).append("\n").append(TimeUtils.getCurrentDataFormatTime())
+        stringBuilder.append(phone)
+            .append("\n")
+            .append(nickName)
+            .append("\n")
+            .append(Base64.decode(avatar,Base64.DEFAULT))
+            .append("\n")
+            .append(TimeUtils.getCurrentDataFormatTime())
         val qrBitmap = QRCodeUtils.createQRCodeBitmap(
             stringBuilder.toString(),
             realWidth,
@@ -253,7 +260,7 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mBottomRealNameRootView,
             ConstraintSet.TOP,
-            10.3f
+            10f
         )
 
         margin(
@@ -262,7 +269,7 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mLogoImageView,
             ConstraintSet.BOTTOM,
-            11.5f
+            11f
         )
         margin(
             mBottomRealNameRootView,
@@ -270,7 +277,7 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mRealNameTipsImageView,
             ConstraintSet.BOTTOM,
-            8.21f
+            8f
         )
         margin(
             mBottomRealNameRootView,
@@ -278,7 +285,7 @@ class QRCodeCardFragment : BaseFragment() {
             ConstraintSet.TOP,
             mStartAuthenticationTextView,
             ConstraintSet.BOTTOM,
-            8.21f
+            8.2f
         )
     }
 

@@ -2,11 +2,13 @@ package com.hhsj.ilive
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.NavController
@@ -15,6 +17,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.hhsj.ilive.ui.main.ConfirmFragment
 import com.hhsj.ilive.widget.CustomToast
 import org.devio.takephoto.app.TakePhotoFragment
 
@@ -38,6 +41,39 @@ open class BaseFragment : TakePhotoFragment() {
 
     fun goBack(nacController: NavController) {
         nacController.popBackStack()
+    }
+
+    fun initConfirmFragmentBundle(
+        title: String,
+        @DrawableRes picture: Int,
+        tips: String,
+        bottom1: String,
+        bottom2: String,
+        confirmType: ConfirmFragment.Companion.ConfirmType
+    ): Bundle {
+        val bundle = Bundle()
+        bundle.putString(
+            ConfirmFragment.TITLE,
+            title
+        )
+        bundle.putInt(ConfirmFragment.ICON, picture)
+        bundle.putString(
+            ConfirmFragment.TIPS,
+            tips
+        )
+        bundle.putString(
+            ConfirmFragment.BOTTOM_ITEM1,
+            bottom1
+        )
+        bundle.putString(
+            ConfirmFragment.BOTTOM_ITEM2,
+            bottom2
+        )
+        bundle.putSerializable(
+            ConfirmFragment.TYPE,
+            confirmType
+        )
+        return bundle
     }
 
     fun hideSoft() {
@@ -106,21 +142,21 @@ open class BaseFragment : TakePhotoFragment() {
         targetView.layoutParams = layoutParams
     }
 
-    fun calculateViewHeight(targetView: View,height: Float){
+    fun calculateViewHeight(targetView: View, height: Float) {
         val layoutParams = targetView.layoutParams
         layoutParams.height = (height / 100.0f * mScreenWidthPixels).toInt()
         targetView.layoutParams = layoutParams
         targetView.invalidate()
     }
 
-    fun calculateViewWidth(targetView: View,width: Float){
+    fun calculateViewWidth(targetView: View, width: Float) {
         val layoutParams = targetView.layoutParams
         layoutParams.width = (width / 100.0f * mScreenWidthPixels).toInt()
         targetView.layoutParams = layoutParams
         targetView.invalidate()
     }
 
-    fun calculateView(targetView: View,width: Float,height: Float){
+    fun calculateView(targetView: View, width: Float, height: Float) {
         val layoutParams = targetView.layoutParams
         layoutParams.width = (width / 100.0f * mScreenWidthPixels).toInt()
         layoutParams.height = (height / 100.0f * mScreenWidthPixels).toInt()
@@ -131,10 +167,11 @@ open class BaseFragment : TakePhotoFragment() {
     fun getRealWidth(width: Float) = (width / 100.0f * mScreenWidthPixels).toInt()
     fun getRealHeight(height: Float) = (height / 100.0f * mScreenWidthPixels).toInt()
 
-    fun checkPhone(phone: String) = (phone.length != 11 || phone[0] != '1' || phone.toLongOrNull() == null)
+    fun checkPhone(phone: String) =
+        (phone.length != 11 || phone[0] != '1' || phone.toLongOrNull() == null)
 
-    fun loadUrlWithBitmap(url: String,imageView: ImageView,block: (bitmap: Bitmap?) -> Unit){
-        Glide.with(requireContext()).asBitmap().load(url).addListener(object:
+    fun loadUrlWithBitmap(url: String, imageView: ImageView, block: (bitmap: Bitmap?) -> Unit) {
+        Glide.with(requireContext()).asBitmap().load(url).addListener(object :
             RequestListener<Bitmap> {
             override fun onLoadFailed(
                 e: GlideException?,

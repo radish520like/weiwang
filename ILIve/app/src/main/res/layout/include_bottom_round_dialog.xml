@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_ll"
+    android:layout_width="match_parent"
+    android:layout_height="227dp"
+    android:background="@drawable/shape_dialog_fragment_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_tips"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:gravity="center"
+        android:textColor="@color/round_rect_button_enable"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/view_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:textFont="Regular" />
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/white_40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_logout" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:text="@string/update_user_info_phone_confirm"
+        android:textColor="@color/round_rect_button_enable"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:textFont="Regular" />
+
+    <View
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/white_80"
+        app:layout_constraintBottom_toTopOf="@+id/tv_cancel"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.hhsj.ilive.widget.CustomFontTextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:text="@string/user_info_logout_dialog_cancel"
+        android:textColor="@color/black_100"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:textFont="Normal" />
+</LinearLayout>

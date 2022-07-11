@@ -105,18 +105,20 @@ class VerifyCodeFragment : BaseFragment() {
             //登出切换账号时获取验证码
             mUserInfoViewModelProvider.getVerifyCode({ LogUtils.e("getVerifyCode success") },
                 { LogUtils.e(it) })
+            if (mFromLogKey == VERIFY_CODE_FROM_LOGOUT) {
+                getString(
+                    R.string.verify_code_tips,
+                    mUserInfoViewModelProvider.getPhone().replaceRange(3..6, "****")
+                )
+            }
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_OLD) {
             //校验手机号
-            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister("",{},{})
+            mUserInfoViewModelProvider.getVerifyCodeExpectLoginOrRegister("", {}, {})
         } else if (mFromLogKey == VERIFY_CODE_FROM_UPDATE_PHONE_NEW) {
             // 新手机号获取验证码在上一步请求中已获取，需要获取 server 端返回值，判断新手机可以绑定。
         }
-        mVerifyCodeTip.text = getString(R.string.verify_code_tips,mUserInfoViewModelProvider.getPhone())
-
-        //getString(
-        //                    R.string.verify_code_tips,
-        //                    mUserInfoViewModelProvider.getPhone().replaceRange(3..6, "****")
-        //                )
+        mVerifyCodeTip.text =
+            getString(R.string.verify_code_tips, mUserInfoViewModelProvider.getPhone())
 
         mCountDownTimer.start()
     }
@@ -127,29 +129,34 @@ class VerifyCodeFragment : BaseFragment() {
             when (mFromLogKey) {
                 VERIFY_CODE_FROM_UPDATE_PHONE_OLD -> {
                     //验证旧手机号
-                    mUserInfoViewModelProvider.checkPhone("",it,success = {
+                    mUserInfoViewModelProvider.checkPhone("", it, success = {
                         mVerifyCode.clear()
                         mVerifyCode.findNavController()
                             .navigate(R.id.action_verifyCodeFragment_to_updatePhoneFragment)
-                    },failure = {
+                    }, failure = {
                         mVerifyCode.clear()
                     })
                 }
                 VERIFY_CODE_FROM_UPDATE_PHONE_NEW -> {
                     //验证新手机号
                     arguments?.getString(UPDATE_NEW_PHONE)?.apply {
-                        mUserInfoViewModelProvider.checkPhone(this,it,success = {
+                        mUserInfoViewModelProvider.checkPhone(this, it, success = {
                             mVerifyCode.clear()
-                            val bundle = Bundle()
-                            bundle.putString(ConfirmFragment.TITLE,resources.getString(R.string.update_user_info_update_avatar_title))
-                            bundle.putInt(ConfirmFragment.ICON,R.mipmap.icon_person)
-                            bundle.putString(ConfirmFragment.TIPS,resources.getString(R.string.update_user_info_update_avatar_tips))
-                            bundle.putString(ConfirmFragment.BOTTOM_ITEM1,this)
-                            bundle.putString(ConfirmFragment.BOTTOM_ITEM2,getString(R.string.update_user_info_phone_confirm))
-                            bundle.putSerializable(ConfirmFragment.TYPE, ConfirmFragment.Companion.ConfirmType.UPDATE_PHONE)
+                            val bundle = initConfirmFragmentBundle(
+                                title = resources.getString(R.string.update_user_info_update_avatar_title),
+                                picture = R.mipmap.icon_person,
+                                tips = resources.getString(R.string.update_user_info_update_avatar_tips),
+                                bottom1 = this,
+                                bottom2 = resources.getString(R.string.update_user_info_phone_confirm),
+                                confirmType = ConfirmFragment.Companion.ConfirmType.UPDATE_PHONE
+                            )
+
                             mVerifyCode.findNavController()
-                                .navigate(R.id.action_verifyCodeFragment_newPhone_to_confirmUpdatePhoneFragment,bundle)
-                        },failure = {
+                                .navigate(
+                                    R.id.action_verifyCodeFragment_newPhone_to_confirmUpdatePhoneFragment,
+                                    bundle
+                                )
+                        }, failure = {
                             mVerifyCode.clear()
                         })
                     }

@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import com.hhsj.ilive.BaseFragment
 import com.hhsj.ilive.R
 import com.hhsj.ilive.ui.login.LoginActivity
+import com.hhsj.ilive.ui.main.ConfirmFragment
 import com.hhsj.ilive.viewmodels.UserInfoViewModel
 import com.hhsj.ilive.widget.CustomEnableTextView
 import com.hhsj.ilive.widget.CustomMyInfoItemView
@@ -72,7 +73,15 @@ class SettingFragment : BaseFragment() {
         }
 
         mLogoutTextView.setOnClickListener {
-            it.findNavController().navigate(R.id.action_userInfoFragment_to_logOutFragment)
+            val bundle = initConfirmFragmentBundle(
+                title = resources.getString(R.string.logout_title),
+                picture = R.mipmap.icon_logout,
+                tips = resources.getString(R.string.user_info_logout_dialog_title),
+                bottom1 = resources.getString(R.string.user_info_logout_dialog_title),
+                bottom2 = resources.getString(R.string.user_info_logout_dialog_exit),
+                confirmType = ConfirmFragment.Companion.ConfirmType.LOG_OUT
+            )
+            it.findNavController().navigate(R.id.action_userInfoFragment_to_logOutFragment,bundle)
         }
     }
 }

@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         applicationId "com.hhsj.ilive"
-//        minSdk 19
         minSdk 21
         targetSdk 28
         versionCode 1

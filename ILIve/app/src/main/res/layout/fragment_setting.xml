@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        style="@style/TitleIcon"
+        style="@style/TitleIcon_back"
         android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
